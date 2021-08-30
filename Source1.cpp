@@ -8,13 +8,16 @@ public:
 	
 	void LapToSeconds(int minuit, float seconds) { //inputs Minuit(whole integer), seconds.tht (float number) puts results into vector array
 		float result = 0;
-		if (minuit < 1) {
-			break;
-		}
-		else {
-			minuit = *60;
-			result = minuit + seconds;
-			continue;
+		while (Laptimes.size() == 5) {
+
+			if (minuit < 1) { //if the minuit value entered is less than 1 stop program
+				break;
+			}
+			else {  //minuit > 1 implied here , convert 
+				minuit = *60;
+				result = minuit + seconds;
+				continue;
+			}
 		}
 	}
 	void AvgCalc(std::vector<float> Laptimes, ) { //input previous 5 laps from vector
