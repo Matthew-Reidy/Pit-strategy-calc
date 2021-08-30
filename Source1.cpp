@@ -8,10 +8,14 @@ public:
 	
 	void LapToSeconds(int minuit, float seconds) { //inputs Minuit(whole integer), seconds.tht (float number) puts results into vector array
 		float result = 0;
-		
-		minuit =* 60;
-		result = minuit + seconds; 
-
+		if (minuit < 1) {
+			break;
+		}
+		else {
+			minuit = *60;
+			result = minuit + seconds;
+			continue;
+		}
 	}
 	void AvgCalc(std::vector<float> Laptimes, ) { //input previous 5 laps from vector
 						     //median avg formula: sum of all lap times / number of laps 
