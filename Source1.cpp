@@ -37,7 +37,7 @@ public:
 
 	}
 
-	nums(float EstFuelCons, float TTF, int FIC ) {
+	MyClass(float EstFuelCons, float TTF, int FIC ) {
 		EstimatedFuelConsumption = EstFuelCons;
 		TimeTilFinish = TTF;
 		FuelInCar = FIC;
