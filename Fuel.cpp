@@ -19,12 +19,15 @@ public:
 		}
 	}
 	int AvgCalc(std::vector<float> Laptimes) { 
-		float sumOfAll = 0;
+		double sumOfAll = 0;
+		double average = 0;
 		for (i = 0, i <= Laptimes.size; i++) {
 			sumOfAll =+ Laptimes[i];
-			sumOfAll =/ 5;
+			
 		}
-		return sumOfAll;
+		average = sumOfAll/Laptimes.size
+		
+		return average;
 	}
 	
 	void ProjectedLaps(int numLaps) {
