@@ -1,13 +1,14 @@
 #include <vector>
+#include <math.h>
 class FuelCalc{
 public:
-	float EstFuelCons; //Estimated fuel fonsumption
-	float TTF; //Time til race finish
+	double EstFuelCons; //Estimated fuel fonsumption
+	double TTF; //Time til race finish
 	int FIC; //Current fuel in car
 	std::vector<float> Laptime; 
 	
-	void LapToSeconds(int minuit, float seconds, std::vector<float> Laptimes) { 
-		float result = 0;
+	void LapToSeconds(int minuit, double seconds, std::vector<float> Laptimes) { 
+		double result = 0;
 		while (Laptime.size() <= 5) {
 			minuit =* 60;
 			result = minuit + seconds;
@@ -42,10 +43,11 @@ public:
 	}
 	
 
-	FuelCalc(float EstFuelCons, float TTF, int FIC ) { //constructor
+	FuelCalc(double EstFuelCons, double TTF, int FIC ) { //constructor
 		EstimatedFuelConsumption = EstFuelCons;
 		TimeTilFinish = TTF;
 		FuelInCar = FIC;
 	}
 	
 };
+
