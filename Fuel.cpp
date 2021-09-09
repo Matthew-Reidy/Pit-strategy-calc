@@ -1,5 +1,4 @@
 #include <vector>
-#include <math.h>
 class FuelCalc{
 public:
 	float EstFuelCons; //Estimated fuel fonsumption
@@ -25,7 +24,7 @@ public:
 			sumOfAll =+ Laptimes[i];
 			
 		}
-		average = sumOfAll/Laptimes.size
+		average = sumOfAll / Laptimes.size;
 		
 		return average;
 	}
@@ -38,14 +37,15 @@ public:
 	int FuelForStint(int numLaps) {
 		int LitersReq = 0;
 		litersReq = numLaps * EstFuelCons;
+
+		return litersReq;
 	}
 	
 
-	FuelCalc(float EstFuelCons, float TTF, int FIC ) {
+	FuelCalc(float EstFuelCons, float TTF, int FIC ) { //constructor
 		EstimatedFuelConsumption = EstFuelCons;
 		TimeTilFinish = TTF;
 		FuelInCar = FIC;
 	}
 	
 };
-
