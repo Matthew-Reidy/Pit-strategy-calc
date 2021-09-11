@@ -10,6 +10,13 @@ int main()
 	std::cin << minuit;
 	std::cout << "enter seconds after the minuit (seconds.xxx)" << std::endl;
 	std::cin << seconds;
+	
+	
+	
+	//sameple contstructor call
+	FuelCalc Strat1 = FuelCalc();
+	FuelCalc.FuelForStint;
+	
 
 }
 
