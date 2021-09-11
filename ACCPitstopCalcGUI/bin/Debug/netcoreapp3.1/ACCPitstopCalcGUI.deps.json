@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "ACCPitstopCalcGUI/1.0.0": {
+        "dependencies": {
+          "FuelCalculation": "1.0.0"
+        },
+        "runtime": {
+          "ACCPitstopCalcGUI.dll": {}
+        }
+      },
+      "FuelCalculation/1.0.0": {
+        "runtime": {
+          "FuelCalculatorDLL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ACCPitstopCalcGUI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FuelCalculation/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
