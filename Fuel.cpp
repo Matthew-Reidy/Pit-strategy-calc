@@ -2,15 +2,18 @@
 #include <math.h>
 class FuelCalc{
 public:
-	double EstFuelCons; //Estimated fuel fonsumption
-	double TTF; //Time til race finish
+	float EstFuelCons; //Estimated fuel fonsumption
+	float TTF; //Time til race finish
 	int FIC; //Current fuel in car
 	std::vector<float> Laptime; 
 	
-	void LapToSeconds(int minuit, double seconds, std::vector<float> Laptimes) { 
-		double result = 0;
+	int FinalCalculation() {
+		//empty for now
+	}
+	void LapToSeconds(int minuit, float seconds, std::vector<float> Laptimes) { 
+		float result = 0;
 		while (Laptime.size() <= 5) {
-			minuit =* 60;
+			minuit *= 60;
 			result = minuit + seconds;
 			    continue;
 			if (minuit < 1) {
@@ -21,33 +24,32 @@ public:
 	int AvgCalc(std::vector<float> Laptimes) { 
 		double sumOfAll = 0;
 		double average = 0;
-		for (i = 0, i <= Laptimes.size; i++) {
+		for (int i = 0; i <= Laptimes.size(); i++) {
 			sumOfAll =+ Laptimes[i];
 			
 		}
-		average = sumOfAll / Laptimes.size;
+		average = sumOfAll / Laptimes.size();
 		
 		return average;
 	}
 	
-	void ProjectedLaps(int numLaps) {
+	int ProjectedLaps() {
 		int numLaps = 0;
-		numLaps = TTF / AvgCalc;
-
+		int numLaps = TTF / AvgCalc(Laptime);
+		return numLaps;
 	}
+
 	int FuelForStint(int numLaps) {
 		int LitersReq = 0;
-		litersReq = numLaps * EstFuelCons;
-
-		return litersReq;
+		LitersReq = numLaps * EstFuelCons;
+		return LitersReq;
 	}
 	
 
-	FuelCalc(double EstFuelCons, double TTF, int FIC ) { //constructor
-		EstimatedFuelConsumption = EstFuelCons;
-		TimeTilFinish = TTF;
-		FuelInCar = FIC;
+	void nums(float EstFuelCons, float TTF, int FIC ) { //constructor
+		this->EstFuelCons = EstFuelCons;
+		this->TTF = TTF;
+		this->FIC = FIC;
 	}
 	
 };
-
