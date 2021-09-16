@@ -9,6 +9,7 @@
       "ACCPitstopCalcGUI/1.0.0": {
         "dependencies": {
           "FuelCalculation": "1.0.0",
+          "SharedMemory": "1.0.0",
           "ksBroadcastingNetwork": "1.0.0"
         },
         "runtime": {
@@ -23,6 +24,11 @@
       "ksBroadcastingNetwork/1.0.0": {
         "runtime": {
           "ksBroadcastingNetwork.dll": {}
+        }
+      },
+      "SharedMemory/1.0.0": {
+        "runtime": {
+          "SharedMemory.dll": {}
         }
       }
     }
@@ -39,6 +45,11 @@
       "sha512": ""
     },
     "ksBroadcastingNetwork/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharedMemory/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

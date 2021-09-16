@@ -475,7 +475,7 @@ namespace ACCPitstopCalcGUI
             // 
             this.nudTimeRemainingHours.Location = new System.Drawing.Point(168, 153);
             this.nudTimeRemainingHours.Maximum = new decimal(new int[] {
-            24,
+            25,
             0,
             0,
             0});
@@ -509,6 +509,7 @@ namespace ACCPitstopCalcGUI
             this.nudTimeRemainingSeconds.Size = new System.Drawing.Size(71, 23);
             this.nudTimeRemainingSeconds.TabIndex = 37;
             this.nudTimeRemainingSeconds.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudTimeRemainingSeconds.ValueChanged += new System.EventHandler(this.btnCalculate_Click);
             // 
             // lblTrackLength
             // 

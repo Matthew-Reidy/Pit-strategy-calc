@@ -1,28 +1,136 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.IO.MemoryMappedFiles;
+using System.ComponentModel;
 
 namespace ACCPitstopCalcGUI
 {
     public partial class FrmGUI : Form
     {
+        sortLapTimes sorter;
+        private class sortLapTimes : System.Collections.IComparer
+        {
+            private int sortModifier = -1;
+            public sortLapTimes()
+            {
+
+            }
+            public int Compare(object a, object b)
+            {
+                DataGridViewRow rowA = (DataGridViewRow)a;
+                DataGridViewRow rowB = (DataGridViewRow)b;
+                bool compareResult = (int)rowA.Cells[0].Value > (int)rowB.Cells[0].Value;
+                int orderResult;
+                if (compareResult)
+                {
+                    orderResult = 1;
+                }
+                else
+                {
+                    orderResult = -1;
+                }
+                return orderResult * sortModifier;
+            }
+        }
         public FrmGUI()
         {
+            sorter = new();
             InitializeComponent();
-        }
-        private void c_CarInfoChanged(object sender, EventArgs e)
-        {
-
         }
         private void c_EntrylistUpdate(string sender, ksBroadcastingNetwork.Structs.CarInfo carInfo)
         {
             Program.carInfo = carInfo;
-
         }
         private void c_OnRealTimeCarUpdate(string sender, ksBroadcastingNetwork.Structs.RealtimeCarUpdate carUpdate)
         {
-            Program.realTimeCarUpdate = carUpdate;
-
+            if(Program.realTimeUpdate.FocusedCarIndex == carUpdate.CarIndex)
+            {
+                if (!(Program.realTimeCarUpdate.Laps == carUpdate.Laps))
+                {
+                    if(dgvLapTimes.Rows.Count != 0)
+                    {
+                        DataGridViewRowCollection rows = dgvLapTimes.Rows;
+                        bool lapExists = false;
+                        foreach(DataGridViewRow r in rows)
+                        {
+                            if((int)r.Cells[0].Value == carUpdate.Laps - 1)
+                            {
+                                lapExists = true;
+                            }
+                            else
+                            {
+                                lapExists = false;
+                            }
+                        }
+                            if(!lapExists)
+                        {
+                            int rowAdded = dgvLapTimes.Rows.Add();
+                            DataGridViewRow newRow = dgvLapTimes.Rows[rowAdded];
+                            decimal lapTimeS = (decimal)carUpdate.LastLap.LaptimeMS / 1000;
+                                if (dgvLapTimes.InvokeRequired)
+                                {
+                                    BeginInvoke((MethodInvoker)delegate ()
+                                    {
+                                        newRow.Cells[2].Value = lapTimeS % 60;
+                                    });
+                                    BeginInvoke((MethodInvoker)delegate ()
+                                    {
+                                        newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
+                                    });
+                                    BeginInvoke((MethodInvoker)delegate ()
+                                    {
+                                        newRow.Cells[0].Value = carUpdate.Laps - 1;
+                                    });
+                                    BeginInvoke((MethodInvoker)delegate ()
+                                    {
+                                        label1.Text = Program.realTimeCarUpdate.LastLap.LaptimeMS.ToString();
+                                    });
+                                }
+                                else
+                                {
+                                    newRow.Cells[2].Value = lapTimeS % 60;
+                                    newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
+                                    newRow.Cells[0].Value = carUpdate.Laps - 1;
+                                }
+                            } 
+                        
+                    }
+                    else
+                    {
+                        int rowAdded = dgvLapTimes.Rows.Add();
+                        DataGridViewRow newRow = dgvLapTimes.Rows[rowAdded];
+                        decimal lapTimeS = (decimal)carUpdate.LastLap.LaptimeMS / 1000;
+                        if (dgvLapTimes.InvokeRequired)
+                        {
+                            BeginInvoke((MethodInvoker)delegate ()
+                            {
+                                newRow.Cells[2].Value = lapTimeS % 60;
+                            });
+                            BeginInvoke((MethodInvoker)delegate ()
+                            {
+                                newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
+                            });
+                            BeginInvoke((MethodInvoker)delegate ()
+                            {
+                                newRow.Cells[0].Value = carUpdate.Laps - 1;
+                            });
+                            BeginInvoke((MethodInvoker)delegate ()
+                            {
+                                label1.Text = Program.realTimeCarUpdate.LastLap.LaptimeMS.ToString();
+                            });
+                        }
+                        else
+                        {
+                            newRow.Cells[2].Value = lapTimeS % 60;
+                            newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
+                            newRow.Cells[0].Value = carUpdate.Laps - 1;
+                        }
+                    }
+                    dgvLapTimes.Sort(sorter);
+                }
+                Program.realTimeCarUpdate = carUpdate;
+            }
         }
         private void c_OnRealTimeUpdate(string sender, ksBroadcastingNetwork.Structs.RealtimeUpdate update)
         {
@@ -62,7 +170,6 @@ namespace ACCPitstopCalcGUI
                 Program.protocol.OnRealtimeUpdate += c_OnRealTimeUpdate;
                 Program.protocol.OnTrackDataUpdate += c_OnTrackDataUpdate;
                 Program.protocol.OnBroadcastingEvent += c_OnBroadcastingEvent;
-                label1.Text = "Connected";
             }
             else
             {
@@ -141,6 +248,8 @@ namespace ACCPitstopCalcGUI
 
         private void FrmGUI_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Program.client.Shutdown();
+            Program.client.Dispose();
             Application.Exit();
         }
 
@@ -168,14 +277,8 @@ namespace ACCPitstopCalcGUI
         }
         private void FrmGUI_Shown(object sender, EventArgs e)
         {
-            Application.DoEvents();
-
-            this.BeginInvoke((MethodInvoker)delegate
-            {
-                label1.Text = "Not Connected";
-                Program.client = new("127.0.0.1", 9000, "Your Name", "asd", "", 250);
-                Program.client.MessageHandler.OnConnectionStateChanged += c_ConnectionStateChanged;
-            });
+            Program.client = new("127.0.0.1", 9000, "Your Name", "asd", "", 250);
+            Program.client.MessageHandler.OnConnectionStateChanged += c_ConnectionStateChanged;
         }
     }
 }

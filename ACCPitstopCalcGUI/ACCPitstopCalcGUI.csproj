@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FuelCalculatorDLL\FuelCalculation.csproj" />
+    <ProjectReference Include="..\Pit-strategy-calc-main\SharedMemory\SharedMemory.csproj" />
     <ProjectReference Include="G:\Daniel\Steam\steamapps\common\Assetto Corsa Competizione Dedicated Server\sdk\broadcasting\Sources\ksBroadcastingNetwork\ksBroadcastingNetwork.csproj" />
   </ItemGroup>
 
