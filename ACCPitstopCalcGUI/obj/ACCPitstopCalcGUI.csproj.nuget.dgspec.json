@@ -37,8 +37,8 @@
               "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\FuelCalculatorDLL\\FuelCalculation.csproj": {
                 "projectPath": "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\FuelCalculatorDLL\\FuelCalculation.csproj"
               },
-              "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\Pit-strategy-calc-main\\SharedMemory\\SharedMemory.csproj": {
-                "projectPath": "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\Pit-strategy-calc-main\\SharedMemory\\SharedMemory.csproj"
+              "C:\\Users\\sucke\\Downloads\\ACCSharedMemory-master\\ACCSharedMemory-master\\AssettoCorsaSharedMemory.csproj": {
+                "projectPath": "C:\\Users\\sucke\\Downloads\\ACCSharedMemory-master\\ACCSharedMemory-master\\AssettoCorsaSharedMemory.csproj"
               },
               "G:\\Daniel\\Steam\\steamapps\\common\\Assetto Corsa Competizione Dedicated Server\\sdk\\broadcasting\\Sources\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj": {
                 "projectPath": "G:\\Daniel\\Steam\\steamapps\\common\\Assetto Corsa Competizione Dedicated Server\\sdk\\broadcasting\\Sources\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj"
@@ -87,64 +87,14 @@
         "net472": {}
       }
     },
-    "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\Pit-strategy-calc-main\\SharedMemory\\SharedMemory.csproj": {
-      "version": "1.0.0",
+    "C:\\Users\\sucke\\Downloads\\ACCSharedMemory-master\\ACCSharedMemory-master\\AssettoCorsaSharedMemory.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\Pit-strategy-calc-main\\SharedMemory\\SharedMemory.csproj",
-        "projectName": "SharedMemory",
-        "projectPath": "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\Pit-strategy-calc-main\\SharedMemory\\SharedMemory.csproj",
-        "packagesPath": "C:\\Users\\sucke\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\Pit-strategy-calc-main\\SharedMemory\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\sucke\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
+        "projectUniqueName": "C:\\Users\\sucke\\Downloads\\ACCSharedMemory-master\\ACCSharedMemory-master\\AssettoCorsaSharedMemory.csproj",
+        "projectName": "AssettoCorsaSharedMemory",
+        "projectPath": "C:\\Users\\sucke\\Downloads\\ACCSharedMemory-master\\ACCSharedMemory-master\\AssettoCorsaSharedMemory.csproj"
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
-        }
+        "net48": {}
       }
     },
     "G:\\Daniel\\Steam\\steamapps\\common\\Assetto Corsa Competizione Dedicated Server\\sdk\\broadcasting\\Sources\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj": {

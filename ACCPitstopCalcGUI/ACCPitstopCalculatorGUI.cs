@@ -44,110 +44,12 @@ namespace ACCPitstopCalcGUI
         }
         private void c_OnRealTimeCarUpdate(string sender, ksBroadcastingNetwork.Structs.RealtimeCarUpdate carUpdate)
         {
-            if(Program.realTimeUpdate.FocusedCarIndex == carUpdate.CarIndex)
-            {
-                if (!(Program.realTimeCarUpdate.Laps == carUpdate.Laps))
-                {
-                    if(dgvLapTimes.Rows.Count != 0)
-                    {
-                        DataGridViewRowCollection rows = dgvLapTimes.Rows;
-                        bool lapExists = false;
-                        foreach(DataGridViewRow r in rows)
-                        {
-                            if((int)r.Cells[0].Value == carUpdate.Laps - 1)
-                            {
-                                lapExists = true;
-                            }
-                            else
-                            {
-                                lapExists = false;
-                            }
-                        }
-                            if(!lapExists)
-                        {
-                            int rowAdded = dgvLapTimes.Rows.Add();
-                            DataGridViewRow newRow = dgvLapTimes.Rows[rowAdded];
-                            decimal lapTimeS = (decimal)carUpdate.LastLap.LaptimeMS / 1000;
-                                if (dgvLapTimes.InvokeRequired)
-                                {
-                                    BeginInvoke((MethodInvoker)delegate ()
-                                    {
-                                        newRow.Cells[2].Value = lapTimeS % 60;
-                                    });
-                                    BeginInvoke((MethodInvoker)delegate ()
-                                    {
-                                        newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
-                                    });
-                                    BeginInvoke((MethodInvoker)delegate ()
-                                    {
-                                        newRow.Cells[0].Value = carUpdate.Laps - 1;
-                                    });
-                                    BeginInvoke((MethodInvoker)delegate ()
-                                    {
-                                        label1.Text = Program.realTimeCarUpdate.LastLap.LaptimeMS.ToString();
-                                    });
-                                }
-                                else
-                                {
-                                    newRow.Cells[2].Value = lapTimeS % 60;
-                                    newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
-                                    newRow.Cells[0].Value = carUpdate.Laps - 1;
-                                }
-                            } 
-                        
-                    }
-                    else
-                    {
-                        int rowAdded = dgvLapTimes.Rows.Add();
-                        DataGridViewRow newRow = dgvLapTimes.Rows[rowAdded];
-                        decimal lapTimeS = (decimal)carUpdate.LastLap.LaptimeMS / 1000;
-                        if (dgvLapTimes.InvokeRequired)
-                        {
-                            BeginInvoke((MethodInvoker)delegate ()
-                            {
-                                newRow.Cells[2].Value = lapTimeS % 60;
-                            });
-                            BeginInvoke((MethodInvoker)delegate ()
-                            {
-                                newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
-                            });
-                            BeginInvoke((MethodInvoker)delegate ()
-                            {
-                                newRow.Cells[0].Value = carUpdate.Laps - 1;
-                            });
-                            BeginInvoke((MethodInvoker)delegate ()
-                            {
-                                label1.Text = Program.realTimeCarUpdate.LastLap.LaptimeMS.ToString();
-                            });
-                        }
-                        else
-                        {
-                            newRow.Cells[2].Value = lapTimeS % 60;
-                            newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
-                            newRow.Cells[0].Value = carUpdate.Laps - 1;
-                        }
-                    }
-                    dgvLapTimes.Sort(sorter);
-                }
-                Program.realTimeCarUpdate = carUpdate;
-            }
+            
+            Program.realTimeCarUpdate = carUpdate;
         }
         private void c_OnRealTimeUpdate(string sender, ksBroadcastingNetwork.Structs.RealtimeUpdate update)
         {
             Program.realTimeUpdate = update;
-            if (nudTimeRemainingHours.InvokeRequired)
-            {
-                nudTimeRemainingHours.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingHours.Value = update.SessionEndTime.Hours; });
-                nudTimeRemainingMinutes.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingMinutes.Value = update.SessionEndTime.Minutes; });
-                nudTimeRemainingSeconds.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingSeconds.Value = update.SessionEndTime.Seconds; });
-
-            }
-            else
-            {
-                nudTimeRemainingHours.Value = update.SessionEndTime.Hours;
-                nudTimeRemainingMinutes.Value = update.SessionEndTime.Minutes;
-                nudTimeRemainingSeconds.Value = update.SessionEndTime.Seconds;
-            }
         }
         private void c_OnTrackDataUpdate(string sender, ksBroadcastingNetwork.Structs.TrackData trackData)
         {
@@ -267,16 +169,181 @@ namespace ACCPitstopCalcGUI
                 decimal averageLapTime = FuelCalculatorDLL.FuelCalc.AvgCalc(lapTimesSeconds);
                 int estimatedLaps = FuelCalculatorDLL.FuelCalc.ProjectedLaps(timeRemainingSeconds, averageLapTime);
                 int fillTo = FuelCalculatorDLL.FuelCalc.FinalCalculation(nudFuelPerLap.Value, estimatedLaps);
+                if (fillTo > nudFuelTankSize.Value) 
+                {
+                    fillTo = (int)nudFuelTankSize.Value;
+                }
                 lblRefuelToOutput.Text = fillTo.ToString();
                 lblProjectedLapsOutput.Text = estimatedLaps.ToString();
             }
         }
         private void c_GameStatusChanged(object sender, EventArgs e)
         {
-            label1.Text = "Memory Connected";
+            Program.memoryConnected = Program.sharedMemory.IsRunning;
+            if (label1.InvokeRequired) 
+            { 
+                label1.Invoke((MethodInvoker)delegate () {
+                    label1.Text = Program.memoryConnected.ToString(); 
+                });
+            }
+        }
+        private void c_staticInfoChanged(object sender, EventArgs e)
+        {
+            Program.staticInfo = Program.sharedMemory.ReadStaticInfo();
+            if (nudFuelTankSize.InvokeRequired)
+            {
+                nudFuelTankSize.Invoke((MethodInvoker)delegate () { nudFuelTankSize.Value = (decimal)Program.staticInfo.MaxFuel; });
+            }else
+            {
+                nudFuelTankSize.Value = (decimal)Program.staticInfo.MaxFuel;
+            }
+        }
+        private void c_graphicsInfoChanged(object sender, EventArgs e)
+        {
+            AssettoCorsaSharedMemory.Graphics newGraphics = Program.sharedMemory.ReadGraphics();
+            if (Program.graphics.CompletedLaps != int.MaxValue)
+            {
+                if(Program.graphics.iLastTime != int.MaxValue)
+                {
+                    if(newGraphics.CompletedLaps != Program.graphics.CompletedLaps)
+                    {
+                        bool lapExists = false;
+                        DataGridViewRowCollection rows = dgvLapTimes.Rows;
+                        if(dgvLapTimes.RowCount != 0) 
+                        {
+                            foreach (DataGridViewRow r in rows)
+                            {
+                                if ((int)r.Cells[0].Value == newGraphics.CompletedLaps)
+                                {
+                                    lapExists = true;
+                                }
+                                else
+                                {
+                                    lapExists = false;
+                                }
+                            }
+                            if (!lapExists)
+                            {
+                                int rowAdded = 0;
+                                if (dgvLapTimes.InvokeRequired)
+                                {
+                                    dgvLapTimes.Invoke((MethodInvoker)delegate () { rowAdded = dgvLapTimes.Rows.Add(); });
+                                }
+                                else
+                                {
+                                    dgvLapTimes.Rows.Add();
+                                }
+                                DataGridViewRow newRow = dgvLapTimes.Rows[rowAdded];
+                                decimal lapTimeS = (decimal)newGraphics.iLastTime / 1000;
+                                if (dgvLapTimes.InvokeRequired)
+                                {
+                                    BeginInvoke((MethodInvoker)delegate ()
+                                    {
+                                        newRow.Cells[2].Value = lapTimeS % 60;
+                                    });
+                                    BeginInvoke((MethodInvoker)delegate ()
+                                    {
+                                        newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
+                                    });
+                                    BeginInvoke((MethodInvoker)delegate ()
+                                    {
+                                        newRow.Cells[0].Value = newGraphics.CompletedLaps;
+                                    });
+                                }
+                                else
+                                {
+                                    newRow.Cells[2].Value = lapTimeS % 60;
+                                    newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
+                                    newRow.Cells[0].Value = newGraphics.CompletedLaps;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            int rowAdded = 0;
+                            if (dgvLapTimes.InvokeRequired)
+                            {
+                                dgvLapTimes.Invoke((MethodInvoker)delegate () { rowAdded = dgvLapTimes.Rows.Add(); });
+                            }
+                            else
+                            {
+                                dgvLapTimes.Rows.Add();
+                            }
+                            DataGridViewRow newRow = dgvLapTimes.Rows[rowAdded];
+                            decimal lapTimeS = (decimal)newGraphics.iLastTime / 1000;
+                            if (dgvLapTimes.InvokeRequired)
+                            {
+                                BeginInvoke((MethodInvoker)delegate ()
+                                {
+                                    newRow.Cells[2].Value = lapTimeS % 60;
+                                });
+                                BeginInvoke((MethodInvoker)delegate ()
+                                {
+                                    newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
+                                });
+                                BeginInvoke((MethodInvoker)delegate ()
+                                {
+                                    newRow.Cells[0].Value = newGraphics.CompletedLaps;
+                                });
+                            }
+                            else
+                            {
+                                newRow.Cells[2].Value = lapTimeS % 60;
+                                newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
+                                newRow.Cells[0].Value = newGraphics.CompletedLaps;
+                            }
+
+                            if (dgvLapTimes.InvokeRequired)
+                            {
+                                dgvLapTimes.Invoke((MethodInvoker)delegate () { dgvLapTimes.Sort(sorter = new()); });
+                            }
+                        }
+                    }
+                }
+            }
+            decimal time = (decimal)newGraphics.SessionTimeLeft;
+            decimal timeRemainingHours = (decimal)Math.Floor(time / (1000 * 60 * 60));
+            time -= timeRemainingHours * 1000 * 60 * 60;
+            decimal timeRemainingMinutes = (decimal)Math.Floor(time / (1000 *60));
+            time -= timeRemainingMinutes * 1000 * 60;
+            decimal timeRemainingSeconds = time/1000;
+            if (nudTimeRemainingHours.InvokeRequired)
+            {
+                nudTimeRemainingHours.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingHours.Value = timeRemainingHours; });
+                nudTimeRemainingMinutes.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingMinutes.Value = timeRemainingMinutes; });
+                nudTimeRemainingSeconds.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingSeconds.Value = timeRemainingSeconds; });
+
+            }
+            else
+            {
+
+                nudTimeRemainingHours.Value = timeRemainingHours;
+                nudTimeRemainingMinutes.Value = timeRemainingMinutes;
+                nudTimeRemainingSeconds.Value = timeRemainingSeconds;
+            }
+            if (nudFuelPerLap.InvokeRequired)
+            {
+                nudFuelPerLap.Invoke((MethodInvoker)delegate () { nudFuelPerLap.Value = (decimal)newGraphics.FuelXLap; });
+            }
+            else
+            {
+                nudFuelPerLap.Value = (decimal)newGraphics.FuelXLap;
+            }
+            Program.graphics = newGraphics;
+        }
+        private void c_physicsInfoChanged(object sender, EventArgs e)
+        {
+            Program.physics = Program.sharedMemory.ReadPhysics();
         }
         private void FrmGUI_Shown(object sender, EventArgs e)
         {
+            Program.memoryConnected = false;
+            Program.sharedMemory.Start();
+            Program.sharedMemory.GameStatusChanged += c_GameStatusChanged;
+            Program.memoryConnected = Program.sharedMemory.IsRunning;
+            Program.sharedMemory.GraphicsUpdated += c_graphicsInfoChanged;
+            Program.sharedMemory.PhysicsUpdated += c_physicsInfoChanged;
+            Program.sharedMemory.StaticInfoUpdated += c_staticInfoChanged;
             Program.client = new("127.0.0.1", 9000, "Your Name", "asd", "", 250);
             Program.client.MessageHandler.OnConnectionStateChanged += c_ConnectionStateChanged;
         }

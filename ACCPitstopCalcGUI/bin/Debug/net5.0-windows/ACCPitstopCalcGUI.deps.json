@@ -8,12 +8,17 @@
     ".NETCoreApp,Version=v5.0": {
       "ACCPitstopCalcGUI/1.0.0": {
         "dependencies": {
+          "AssettoCorsaSharedMemory": "1.0.0",
           "FuelCalculation": "1.0.0",
-          "SharedMemory": "1.0.0",
           "ksBroadcastingNetwork": "1.0.0"
         },
         "runtime": {
           "ACCPitstopCalcGUI.dll": {}
+        }
+      },
+      "AssettoCorsaSharedMemory/1.0.0": {
+        "runtime": {
+          "AssettoCorsaSharedMemory.dll": {}
         }
       },
       "FuelCalculation/1.0.0": {
@@ -25,16 +30,16 @@
         "runtime": {
           "ksBroadcastingNetwork.dll": {}
         }
-      },
-      "SharedMemory/1.0.0": {
-        "runtime": {
-          "SharedMemory.dll": {}
-        }
       }
     }
   },
   "libraries": {
     "ACCPitstopCalcGUI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AssettoCorsaSharedMemory/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -45,11 +50,6 @@
       "sha512": ""
     },
     "ksBroadcastingNetwork/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "SharedMemory/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
