@@ -1,0 +1,12 @@
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\bin\Debug\net5.0\SharedMemory.deps.json
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\bin\Debug\net5.0\SharedMemory.dll
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\bin\Debug\net5.0\ref\SharedMemory.dll
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\bin\Debug\net5.0\SharedMemory.pdb
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\obj\Debug\net5.0\SharedMemory.csproj.AssemblyReference.cache
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\obj\Debug\net5.0\SharedMemory.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\obj\Debug\net5.0\SharedMemory.AssemblyInfoInputs.cache
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\obj\Debug\net5.0\SharedMemory.AssemblyInfo.cs
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\obj\Debug\net5.0\SharedMemory.csproj.CoreCompileInputs.cache
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\obj\Debug\net5.0\SharedMemory.dll
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\obj\Debug\net5.0\ref\SharedMemory.dll
+C:\Users\sucke\Documents\Pit-strategy-calc-main\Pit-strategy-calc-main\SharedMemory\obj\Debug\net5.0\SharedMemory.pdb
