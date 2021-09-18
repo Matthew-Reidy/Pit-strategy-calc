@@ -31,6 +31,9 @@ namespace ACCPitstopCalcGUI
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpenOverlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsiConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.styleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,28 +90,54 @@ namespace ACCPitstopCalcGUI
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.WindowText;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFile,
             this.tsiConfig,
             this.tsmiAbout});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(744, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // tsmiFile
             // 
             this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.toolStripSeparator1,
             this.tsmiExit});
+            this.tsmiFile.ForeColor = System.Drawing.SystemColors.Window;
             this.tsmiFile.Name = "tsmiFile";
             this.tsmiFile.Size = new System.Drawing.Size(37, 20);
             this.tsmiFile.Text = "File";
+            this.tsmiFile.DropDownClosed += new System.EventHandler(this.tsmiFile_DropDownClosed);
+            this.tsmiFile.DropDownOpened += new System.EventHandler(this.tsmiFile_DropDownOpened);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiOpenOverlay});
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
+            // tsmiOpenOverlay
+            // 
+            this.tsmiOpenOverlay.Name = "tsmiOpenOverlay";
+            this.tsmiOpenOverlay.Size = new System.Drawing.Size(114, 22);
+            this.tsmiOpenOverlay.Text = "Overlay";
+            this.tsmiOpenOverlay.Click += new System.EventHandler(this.tsmiOpenOverlay_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(93, 22);
+            this.tsmiExit.Size = new System.Drawing.Size(180, 22);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -117,9 +146,12 @@ namespace ACCPitstopCalcGUI
             this.tsiConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.styleToolStripMenuItem,
             this.backgroundToolStripMenuItem});
+            this.tsiConfig.ForeColor = System.Drawing.SystemColors.Window;
             this.tsiConfig.Name = "tsiConfig";
             this.tsiConfig.Size = new System.Drawing.Size(55, 20);
             this.tsiConfig.Text = "Config";
+            this.tsiConfig.DropDownClosed += new System.EventHandler(this.tsmiFile_DropDownClosed);
+            this.tsiConfig.DropDownOpened += new System.EventHandler(this.tsmiFile_DropDownOpened);
             // 
             // styleToolStripMenuItem
             // 
@@ -127,20 +159,22 @@ namespace ACCPitstopCalcGUI
             this.lightToolStripMenuItem,
             this.darkToolStripMenuItem});
             this.styleToolStripMenuItem.Name = "styleToolStripMenuItem";
-            this.styleToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.styleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.styleToolStripMenuItem.Text = "Style";
             // 
             // lightToolStripMenuItem
             // 
             this.lightToolStripMenuItem.Name = "lightToolStripMenuItem";
-            this.lightToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.lightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lightToolStripMenuItem.Text = "Light";
+            this.lightToolStripMenuItem.Click += new System.EventHandler(this.lightToolStripMenuItem_Click);
             // 
             // darkToolStripMenuItem
             // 
             this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
-            this.darkToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.darkToolStripMenuItem.Text = "Dark";
+            this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
             // 
             // backgroundToolStripMenuItem
             // 
@@ -148,7 +182,7 @@ namespace ACCPitstopCalcGUI
             this.defaultToolStripMenuItem,
             this.selectToolStripMenuItem});
             this.backgroundToolStripMenuItem.Name = "backgroundToolStripMenuItem";
-            this.backgroundToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.backgroundToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.backgroundToolStripMenuItem.Text = "Background";
             // 
             // defaultToolStripMenuItem
@@ -165,6 +199,8 @@ namespace ACCPitstopCalcGUI
             // 
             // tsmiAbout
             // 
+            this.tsmiAbout.BackColor = System.Drawing.SystemColors.WindowText;
+            this.tsmiAbout.ForeColor = System.Drawing.SystemColors.Window;
             this.tsmiAbout.Name = "tsmiAbout";
             this.tsmiAbout.Size = new System.Drawing.Size(52, 20);
             this.tsmiAbout.Text = "About";
@@ -172,7 +208,8 @@ namespace ACCPitstopCalcGUI
             // 
             // lblFuelPerLap
             // 
-            this.lblFuelPerLap.BackColor = System.Drawing.SystemColors.Control;
+            this.lblFuelPerLap.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblFuelPerLap.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblFuelPerLap.Location = new System.Drawing.Point(13, 50);
             this.lblFuelPerLap.Name = "lblFuelPerLap";
             this.lblFuelPerLap.Size = new System.Drawing.Size(100, 15);
@@ -182,6 +219,8 @@ namespace ACCPitstopCalcGUI
             // 
             // lblTimeRemaining
             // 
+            this.lblTimeRemaining.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblTimeRemaining.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTimeRemaining.Location = new System.Drawing.Point(13, 150);
             this.lblTimeRemaining.Name = "lblTimeRemaining";
             this.lblTimeRemaining.Size = new System.Drawing.Size(100, 30);
@@ -191,6 +230,8 @@ namespace ACCPitstopCalcGUI
             // 
             // lblProjectedLaps
             // 
+            this.lblProjectedLaps.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblProjectedLaps.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblProjectedLaps.Location = new System.Drawing.Point(13, 241);
             this.lblProjectedLaps.Name = "lblProjectedLaps";
             this.lblProjectedLaps.Size = new System.Drawing.Size(100, 15);
@@ -200,6 +241,8 @@ namespace ACCPitstopCalcGUI
             // 
             // lblFuelTankSize
             // 
+            this.lblFuelTankSize.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblFuelTankSize.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblFuelTankSize.Location = new System.Drawing.Point(13, 100);
             this.lblFuelTankSize.Name = "lblFuelTankSize";
             this.lblFuelTankSize.Size = new System.Drawing.Size(100, 15);
@@ -209,6 +252,8 @@ namespace ACCPitstopCalcGUI
             // 
             // lblFuelToAdd
             // 
+            this.lblFuelToAdd.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblFuelToAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblFuelToAdd.Location = new System.Drawing.Point(13, 291);
             this.lblFuelToAdd.Name = "lblFuelToAdd";
             this.lblFuelToAdd.Size = new System.Drawing.Size(100, 15);
@@ -218,6 +263,8 @@ namespace ACCPitstopCalcGUI
             // 
             // lblRefuelTo
             // 
+            this.lblRefuelTo.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblRefuelTo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblRefuelTo.Location = new System.Drawing.Point(13, 341);
             this.lblRefuelTo.Name = "lblRefuelTo";
             this.lblRefuelTo.Size = new System.Drawing.Size(100, 15);
@@ -227,7 +274,8 @@ namespace ACCPitstopCalcGUI
             // 
             // lblProjectedLapsOutput
             // 
-            this.lblProjectedLapsOutput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblProjectedLapsOutput.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblProjectedLapsOutput.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblProjectedLapsOutput.Location = new System.Drawing.Point(120, 241);
             this.lblProjectedLapsOutput.Name = "lblProjectedLapsOutput";
             this.lblProjectedLapsOutput.Size = new System.Drawing.Size(120, 15);
@@ -237,7 +285,8 @@ namespace ACCPitstopCalcGUI
             // 
             // lblFuelToAddOutput
             // 
-            this.lblFuelToAddOutput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblFuelToAddOutput.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblFuelToAddOutput.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblFuelToAddOutput.Location = new System.Drawing.Point(120, 291);
             this.lblFuelToAddOutput.Name = "lblFuelToAddOutput";
             this.lblFuelToAddOutput.Size = new System.Drawing.Size(120, 15);
@@ -247,7 +296,8 @@ namespace ACCPitstopCalcGUI
             // 
             // lblRefuelToOutput
             // 
-            this.lblRefuelToOutput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblRefuelToOutput.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblRefuelToOutput.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblRefuelToOutput.Location = new System.Drawing.Point(120, 341);
             this.lblRefuelToOutput.Name = "lblRefuelToOutput";
             this.lblRefuelToOutput.Size = new System.Drawing.Size(120, 15);
@@ -257,28 +307,36 @@ namespace ACCPitstopCalcGUI
             // 
             // btnCalculate
             // 
+            this.btnCalculate.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnCalculate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCalculate.Location = new System.Drawing.Point(13, 391);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(100, 30);
             this.btnCalculate.TabIndex = 13;
             this.btnCalculate.Text = "Calculate";
-            this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.UseVisualStyleBackColor = false;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // btnDeleteLap
             // 
-            this.btnDeleteLap.Location = new System.Drawing.Point(537, 415);
+            this.btnDeleteLap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteLap.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnDeleteLap.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnDeleteLap.Location = new System.Drawing.Point(481, 415);
             this.btnDeleteLap.Name = "btnDeleteLap";
             this.btnDeleteLap.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteLap.TabIndex = 15;
             this.btnDeleteLap.Text = "Delete Lap";
-            this.btnDeleteLap.UseVisualStyleBackColor = true;
+            this.btnDeleteLap.UseVisualStyleBackColor = false;
             this.btnDeleteLap.Click += new System.EventHandler(this.btnDeleteLap_Click);
             // 
             // lblEnterLapTime
             // 
+            this.lblEnterLapTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEnterLapTime.AutoSize = true;
-            this.lblEnterLapTime.Location = new System.Drawing.Point(408, 28);
+            this.lblEnterLapTime.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblEnterLapTime.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblEnterLapTime.Location = new System.Drawing.Point(352, 28);
             this.lblEnterLapTime.Name = "lblEnterLapTime";
             this.lblEnterLapTime.Size = new System.Drawing.Size(91, 15);
             this.lblEnterLapTime.TabIndex = 16;
@@ -286,18 +344,23 @@ namespace ACCPitstopCalcGUI
             // 
             // btnEnterLapTime
             // 
+            this.btnEnterLapTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEnterLapTime.AutoSize = true;
-            this.btnEnterLapTime.Location = new System.Drawing.Point(404, 114);
+            this.btnEnterLapTime.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnEnterLapTime.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEnterLapTime.Location = new System.Drawing.Point(348, 114);
             this.btnEnterLapTime.Name = "btnEnterLapTime";
             this.btnEnterLapTime.Size = new System.Drawing.Size(95, 25);
             this.btnEnterLapTime.TabIndex = 18;
             this.btnEnterLapTime.Text = "Enter Lap Time";
-            this.btnEnterLapTime.UseVisualStyleBackColor = true;
+            this.btnEnterLapTime.UseVisualStyleBackColor = false;
             this.btnEnterLapTime.Click += new System.EventHandler(this.btnEnterLapTime_Click);
             // 
             // nudFuelPerLap
             // 
+            this.nudFuelPerLap.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.nudFuelPerLap.DecimalPlaces = 2;
+            this.nudFuelPerLap.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.nudFuelPerLap.Increment = new decimal(new int[] {
             1,
             0,
@@ -316,6 +379,8 @@ namespace ACCPitstopCalcGUI
             // 
             // nudFuelTankSize
             // 
+            this.nudFuelTankSize.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.nudFuelTankSize.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.nudFuelTankSize.Location = new System.Drawing.Point(119, 98);
             this.nudFuelTankSize.Maximum = new decimal(new int[] {
             200,
@@ -329,18 +394,24 @@ namespace ACCPitstopCalcGUI
             // 
             // btnClearAllLaps
             // 
-            this.btnClearAllLaps.Location = new System.Drawing.Point(662, 415);
+            this.btnClearAllLaps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearAllLaps.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnClearAllLaps.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnClearAllLaps.Location = new System.Drawing.Point(606, 415);
             this.btnClearAllLaps.Name = "btnClearAllLaps";
             this.btnClearAllLaps.Size = new System.Drawing.Size(75, 23);
             this.btnClearAllLaps.TabIndex = 23;
             this.btnClearAllLaps.Text = "Clear";
-            this.btnClearAllLaps.UseVisualStyleBackColor = true;
+            this.btnClearAllLaps.UseVisualStyleBackColor = false;
             this.btnClearAllLaps.Click += new System.EventHandler(this.btnClearAllLaps_Click);
             // 
             // lblLapTimes
             // 
+            this.lblLapTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLapTimes.AutoSize = true;
-            this.lblLapTimes.Location = new System.Drawing.Point(537, 28);
+            this.lblLapTimes.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblLapTimes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblLapTimes.Location = new System.Drawing.Point(481, 28);
             this.lblLapTimes.Name = "lblLapTimes";
             this.lblLapTimes.Size = new System.Drawing.Size(57, 15);
             this.lblLapTimes.TabIndex = 25;
@@ -349,7 +420,8 @@ namespace ACCPitstopCalcGUI
             // lblError
             // 
             this.lblError.AutoSize = true;
-            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblError.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblError.Location = new System.Drawing.Point(13, 423);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(116, 15);
@@ -359,7 +431,10 @@ namespace ACCPitstopCalcGUI
             // 
             // nudLapTimeMinutes
             // 
-            this.nudLapTimeMinutes.Location = new System.Drawing.Point(404, 48);
+            this.nudLapTimeMinutes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudLapTimeMinutes.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.nudLapTimeMinutes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.nudLapTimeMinutes.Location = new System.Drawing.Point(348, 48);
             this.nudLapTimeMinutes.Name = "nudLapTimeMinutes";
             this.nudLapTimeMinutes.Size = new System.Drawing.Size(120, 23);
             this.nudLapTimeMinutes.TabIndex = 27;
@@ -367,7 +442,10 @@ namespace ACCPitstopCalcGUI
             // 
             // lblLapTimeMinutes
             // 
-            this.lblLapTimeMinutes.Location = new System.Drawing.Point(298, 46);
+            this.lblLapTimeMinutes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLapTimeMinutes.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblLapTimeMinutes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblLapTimeMinutes.Location = new System.Drawing.Point(242, 46);
             this.lblLapTimeMinutes.Name = "lblLapTimeMinutes";
             this.lblLapTimeMinutes.Size = new System.Drawing.Size(100, 23);
             this.lblLapTimeMinutes.TabIndex = 28;
@@ -376,7 +454,10 @@ namespace ACCPitstopCalcGUI
             // 
             // lblLapTimeSeconds
             // 
-            this.lblLapTimeSeconds.Location = new System.Drawing.Point(298, 70);
+            this.lblLapTimeSeconds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLapTimeSeconds.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblLapTimeSeconds.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblLapTimeSeconds.Location = new System.Drawing.Point(242, 70);
             this.lblLapTimeSeconds.Name = "lblLapTimeSeconds";
             this.lblLapTimeSeconds.Size = new System.Drawing.Size(100, 23);
             this.lblLapTimeSeconds.TabIndex = 30;
@@ -385,8 +466,11 @@ namespace ACCPitstopCalcGUI
             // 
             // nudLapTimeSeconds
             // 
+            this.nudLapTimeSeconds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudLapTimeSeconds.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.nudLapTimeSeconds.DecimalPlaces = 3;
-            this.nudLapTimeSeconds.Location = new System.Drawing.Point(404, 72);
+            this.nudLapTimeSeconds.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.nudLapTimeSeconds.Location = new System.Drawing.Point(348, 72);
             this.nudLapTimeSeconds.Maximum = new decimal(new int[] {
             60,
             0,
@@ -403,13 +487,15 @@ namespace ACCPitstopCalcGUI
             this.dgvLapTimes.AllowUserToDeleteRows = false;
             this.dgvLapTimes.AllowUserToResizeColumns = false;
             this.dgvLapTimes.AllowUserToResizeRows = false;
+            this.dgvLapTimes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvLapTimes.CausesValidation = false;
             this.dgvLapTimes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLapTimes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Lap,
             this.Minutes,
             this.Seconds});
-            this.dgvLapTimes.Location = new System.Drawing.Point(537, 47);
+            this.dgvLapTimes.Location = new System.Drawing.Point(481, 47);
             this.dgvLapTimes.MultiSelect = false;
             this.dgvLapTimes.Name = "dgvLapTimes";
             this.dgvLapTimes.ReadOnly = true;
@@ -447,6 +533,8 @@ namespace ACCPitstopCalcGUI
             // lblTimeRemainingHours
             // 
             this.lblTimeRemainingHours.AutoSize = true;
+            this.lblTimeRemainingHours.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblTimeRemainingHours.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTimeRemainingHours.Location = new System.Drawing.Point(120, 155);
             this.lblTimeRemainingHours.Name = "lblTimeRemainingHours";
             this.lblTimeRemainingHours.Size = new System.Drawing.Size(42, 15);
@@ -455,6 +543,8 @@ namespace ACCPitstopCalcGUI
             // 
             // lblTimeRemainingMinutes
             // 
+            this.lblTimeRemainingMinutes.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblTimeRemainingMinutes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTimeRemainingMinutes.Location = new System.Drawing.Point(102, 179);
             this.lblTimeRemainingMinutes.Name = "lblTimeRemainingMinutes";
             this.lblTimeRemainingMinutes.Size = new System.Drawing.Size(60, 15);
@@ -464,6 +554,8 @@ namespace ACCPitstopCalcGUI
             // 
             // lblTimeRemainingSeconds
             // 
+            this.lblTimeRemainingSeconds.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblTimeRemainingSeconds.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTimeRemainingSeconds.Location = new System.Drawing.Point(102, 203);
             this.lblTimeRemainingSeconds.Name = "lblTimeRemainingSeconds";
             this.lblTimeRemainingSeconds.Size = new System.Drawing.Size(60, 15);
@@ -473,6 +565,8 @@ namespace ACCPitstopCalcGUI
             // 
             // nudTimeRemainingHours
             // 
+            this.nudTimeRemainingHours.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.nudTimeRemainingHours.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.nudTimeRemainingHours.Location = new System.Drawing.Point(168, 153);
             this.nudTimeRemainingHours.Maximum = new decimal(new int[] {
             25,
@@ -486,6 +580,8 @@ namespace ACCPitstopCalcGUI
             // 
             // nudTimeRemainingMinutes
             // 
+            this.nudTimeRemainingMinutes.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.nudTimeRemainingMinutes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.nudTimeRemainingMinutes.Location = new System.Drawing.Point(168, 177);
             this.nudTimeRemainingMinutes.Maximum = new decimal(new int[] {
             60,
@@ -499,6 +595,8 @@ namespace ACCPitstopCalcGUI
             // 
             // nudTimeRemainingSeconds
             // 
+            this.nudTimeRemainingSeconds.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.nudTimeRemainingSeconds.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.nudTimeRemainingSeconds.Location = new System.Drawing.Point(168, 201);
             this.nudTimeRemainingSeconds.Maximum = new decimal(new int[] {
             60,
@@ -513,8 +611,11 @@ namespace ACCPitstopCalcGUI
             // 
             // lblTrackLength
             // 
+            this.lblTrackLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTrackLength.AutoSize = true;
-            this.lblTrackLength.Location = new System.Drawing.Point(359, 178);
+            this.lblTrackLength.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblTrackLength.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblTrackLength.Location = new System.Drawing.Point(303, 178);
             this.lblTrackLength.Name = "lblTrackLength";
             this.lblTrackLength.Size = new System.Drawing.Size(74, 15);
             this.lblTrackLength.TabIndex = 38;
@@ -522,8 +623,11 @@ namespace ACCPitstopCalcGUI
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(359, 197);
+            this.label1.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(303, 197);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 39;
@@ -534,7 +638,8 @@ namespace ACCPitstopCalcGUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.ClientSize = new System.Drawing.Size(744, 450);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTrackLength);
             this.Controls.Add(this.nudTimeRemainingSeconds);
@@ -567,7 +672,9 @@ namespace ACCPitstopCalcGUI
             this.Controls.Add(this.lblTimeRemaining);
             this.Controls.Add(this.lblFuelPerLap);
             this.Controls.Add(this.menuStrip1);
+            this.ForeColor = System.Drawing.SystemColors.Window;
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(760, 489);
             this.Name = "FrmGUI";
             this.Text = "Pitstop Calculator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmGUI_FormClosing);
@@ -634,6 +741,9 @@ namespace ACCPitstopCalcGUI
         private System.Windows.Forms.NumericUpDown nudTimeRemainingSeconds;
         private System.Windows.Forms.Label lblTrackLength;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenOverlay;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

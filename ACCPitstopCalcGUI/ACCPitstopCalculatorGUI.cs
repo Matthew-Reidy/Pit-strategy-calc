@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO.MemoryMappedFiles;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace ACCPitstopCalcGUI
 {
     public partial class FrmGUI : Form
     {
+        enum ColorScheme
+        {
+            light,
+            dark
+        }
+        ColorScheme colorScheme;
         sortLapTimes sorter;
+        Control.ControlCollection controls;
         private class sortLapTimes : System.Collections.IComparer
         {
             private int sortModifier = -1;
@@ -35,6 +43,7 @@ namespace ACCPitstopCalcGUI
         }
         public FrmGUI()
         {
+            colorScheme = ColorScheme.dark;
             sorter = new();
             InitializeComponent();
         }
@@ -167,7 +176,7 @@ namespace ACCPitstopCalcGUI
                     lapTimesSeconds.Add(FuelCalculatorDLL.FuelCalc.LapToSeconds((decimal)lapTime.Cells[1].Value, (decimal)lapTime.Cells[2].Value));
                 }
                 decimal averageLapTime = FuelCalculatorDLL.FuelCalc.AvgCalc(lapTimesSeconds);
-                int estimatedLaps = FuelCalculatorDLL.FuelCalc.ProjectedLaps(timeRemainingSeconds, averageLapTime);
+                int estimatedLaps = FuelCalculatorDLL.FuelCalc.ProjectedLaps(timeRemainingSeconds + Program.graphics.iCurrentTime/1000, averageLapTime);
                 int fillTo = FuelCalculatorDLL.FuelCalc.FinalCalculation(nudFuelPerLap.Value, estimatedLaps);
                 if (fillTo > nudFuelTankSize.Value) 
                 {
@@ -292,7 +301,6 @@ namespace ACCPitstopCalcGUI
                                 newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
                                 newRow.Cells[0].Value = newGraphics.CompletedLaps;
                             }
-
                             if (dgvLapTimes.InvokeRequired)
                             {
                                 dgvLapTimes.Invoke((MethodInvoker)delegate () { dgvLapTimes.Sort(sorter = new()); });
@@ -307,27 +315,31 @@ namespace ACCPitstopCalcGUI
             decimal timeRemainingMinutes = (decimal)Math.Floor(time / (1000 *60));
             time -= timeRemainingMinutes * 1000 * 60;
             decimal timeRemainingSeconds = time/1000;
-            if (nudTimeRemainingHours.InvokeRequired)
+            
+            if (newGraphics.SessionTimeLeft != -1) 
             {
-                nudTimeRemainingHours.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingHours.Value = timeRemainingHours; });
-                nudTimeRemainingMinutes.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingMinutes.Value = timeRemainingMinutes; });
-                nudTimeRemainingSeconds.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingSeconds.Value = timeRemainingSeconds; });
+                if (nudTimeRemainingHours.InvokeRequired)
+                {
+                    nudTimeRemainingHours.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingHours.Value = timeRemainingHours; });
+                    nudTimeRemainingMinutes.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingMinutes.Value = timeRemainingMinutes; });
+                    nudTimeRemainingSeconds.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingSeconds.Value = timeRemainingSeconds; });
 
-            }
-            else
-            {
+                }
+                else
+                {
 
-                nudTimeRemainingHours.Value = timeRemainingHours;
-                nudTimeRemainingMinutes.Value = timeRemainingMinutes;
-                nudTimeRemainingSeconds.Value = timeRemainingSeconds;
-            }
-            if (nudFuelPerLap.InvokeRequired)
-            {
-                nudFuelPerLap.Invoke((MethodInvoker)delegate () { nudFuelPerLap.Value = (decimal)newGraphics.FuelXLap; });
-            }
-            else
-            {
-                nudFuelPerLap.Value = (decimal)newGraphics.FuelXLap;
+                    nudTimeRemainingHours.Value = timeRemainingHours;
+                    nudTimeRemainingMinutes.Value = timeRemainingMinutes;
+                    nudTimeRemainingSeconds.Value = timeRemainingSeconds;
+                }
+                if (nudFuelPerLap.InvokeRequired)
+                {
+                    nudFuelPerLap.Invoke((MethodInvoker)delegate () { nudFuelPerLap.Value = (decimal)newGraphics.FuelXLap; });
+                }
+                else
+                {
+                    nudFuelPerLap.Value = (decimal)newGraphics.FuelXLap;
+                }
             }
             Program.graphics = newGraphics;
         }
@@ -346,6 +358,88 @@ namespace ACCPitstopCalcGUI
             Program.sharedMemory.StaticInfoUpdated += c_staticInfoChanged;
             Program.client = new("127.0.0.1", 9000, "Your Name", "asd", "", 250);
             Program.client.MessageHandler.OnConnectionStateChanged += c_ConnectionStateChanged;
+        }
+
+        private void tsmiOpenOverlay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.BackColor = SystemColors.ControlLight;
+            this.ForeColor = SystemColors.WindowText;
+            controls = this.Controls;
+            foreach (Control c in controls)
+            {
+                c.BackColor = SystemColors.ControlLight;
+                c.ForeColor = SystemColors.ControlText;
+            }
+            menuStrip1.BackColor = SystemColors.Window;
+            tsmiFile.BackColor = SystemColors.Window;
+            tsiConfig.BackColor = SystemColors.Window;
+            tsmiAbout.BackColor = SystemColors.Window;
+            tsmiFile.ForeColor = SystemColors.WindowText;
+            tsiConfig.ForeColor = SystemColors.WindowText;
+            tsmiAbout.ForeColor = SystemColors.WindowText;
+            colorScheme = ColorScheme.light;
+        }
+
+        private void tsmiFile_DropDownOpened(object sender, EventArgs e)
+        {
+            switch (colorScheme)
+            {
+                case ColorScheme.dark:
+                    ((ToolStripMenuItem)sender).BackColor = SystemColors.Window;
+                    ((ToolStripMenuItem)sender).ForeColor = SystemColors.WindowText;
+                    break;
+                case ColorScheme.light:
+                    ((ToolStripMenuItem)sender).BackColor = SystemColors.WindowText;
+                    ((ToolStripMenuItem)sender).ForeColor = SystemColors.Window;
+                    break;
+                default:
+                    break;
+
+            }
+        }
+
+        private void tsmiFile_DropDownClosed(object sender, EventArgs e)
+        {
+            switch (colorScheme)
+            {
+                case ColorScheme.dark:
+                    ((ToolStripMenuItem)sender).BackColor = SystemColors.WindowText;
+                    ((ToolStripMenuItem)sender).ForeColor = SystemColors.Window;
+                    break;
+                case ColorScheme.light:
+                    ((ToolStripMenuItem)sender).BackColor = SystemColors.Window;
+                    ((ToolStripMenuItem)sender).ForeColor = SystemColors.WindowText;
+                    break;
+                default:
+                    break;
+
+            }
+        }
+
+        private void darkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            this.ForeColor = SystemColors.Window;
+            this.BackColor = SystemColors.WindowFrame;
+            controls = this.Controls;
+            foreach (Control c in controls)
+            {
+                c.ForeColor = SystemColors.ControlLightLight;
+                c.BackColor = SystemColors.WindowFrame;
+            }
+            menuStrip1.BackColor = SystemColors.WindowText;
+            tsmiFile.ForeColor = SystemColors.Window;
+            tsiConfig.ForeColor = SystemColors.Window;
+            tsmiAbout.ForeColor = SystemColors.Window;
+            tsmiFile.BackColor = SystemColors.WindowText;
+            tsiConfig.BackColor = SystemColors.WindowText;
+            tsmiAbout.BackColor = SystemColors.WindowText;
+            colorScheme = ColorScheme.dark;
         }
     }
 }
