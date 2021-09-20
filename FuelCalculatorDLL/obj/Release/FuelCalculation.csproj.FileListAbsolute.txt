@@ -1,0 +1,6 @@
+C:\Users\sucke\Documents\Pit-strategy-calc-main\FuelCalculatorDLL\bin\Release\FuelCalculatorDLL.dll
+C:\Users\sucke\Documents\Pit-strategy-calc-main\FuelCalculatorDLL\bin\Release\FuelCalculatorDLL.pdb
+C:\Users\sucke\Documents\Pit-strategy-calc-main\FuelCalculatorDLL\obj\Release\FuelCalculation.csproj.AssemblyReference.cache
+C:\Users\sucke\Documents\Pit-strategy-calc-main\FuelCalculatorDLL\obj\Release\FuelCalculation.csproj.CoreCompileInputs.cache
+C:\Users\sucke\Documents\Pit-strategy-calc-main\FuelCalculatorDLL\obj\Release\FuelCalculatorDLL.dll
+C:\Users\sucke\Documents\Pit-strategy-calc-main\FuelCalculatorDLL\obj\Release\FuelCalculatorDLL.pdb

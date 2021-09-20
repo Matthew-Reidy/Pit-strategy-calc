@@ -15,13 +15,19 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_44F47321F4E948A188DB0B41A46FD85C"
+        "MsmKey" = "8:_18F6FEA7A7AF45DFBEB507363A879C39"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_EB3B113C4C904320B7EDCBBA6D7C39B7"
+        "MsmKey" = "8:_6CDC1AD59FE14CB181B4A5E409B243B6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_71C7D5FB4BAB48969A90DFBC59CD12B5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -52,11 +58,6 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
-                    {
-                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
-                    }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.8"
                     {
                     "Name" = "8:Microsoft .NET Framework 4.8 (x86 and x64)"
@@ -66,6 +67,11 @@
                     {
                     "Name" = "8:.NET Runtime 5.0.9 (x64)"
                     "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.5.0.x64"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.5.0.x86"
+                    {
+                    "Name" = "8:.NET Runtime 5.0.9 (x86)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.5.0.x86"
                     }
                 }
             }
@@ -135,14 +141,14 @@
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet-core/[NetCoreVerMajorDotMinor]"
                 "IsNETCore" = "11:TRUE"
-                "Architecture" = "2:0"
-                "Runtime" = "2:0"
+                "Architecture" = "2:3"
+                "Runtime" = "2:1"
                 }
                 "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_88B073924B3E40699E89FD93A4215D15"
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.7.2"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.8"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=863262"
                 }
@@ -150,10 +156,30 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_44F47321F4E948A188DB0B41A46FD85C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_18F6FEA7A7AF45DFBEB507363A879C39"
             {
             "SourcePath" = "8:..\\TODO.txt"
             "TargetName" = "8:TODO.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_C08F3ACA94B94FAFA5F9FC75F737A0F8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6CDC1AD59FE14CB181B4A5E409B243B6"
+            {
+            "SourcePath" = "8:..\\Patch Notes.txt"
+            "TargetName" = "8:Patch Notes.txt"
             "Tag" = "8:"
             "Folder" = "8:_C08F3ACA94B94FAFA5F9FC75F737A0F8"
             "Condition" = "8:"
@@ -178,7 +204,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_C08F3ACA94B94FAFA5F9FC75F737A0F8"
             {
-            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[LocalAppDataFolder]\\[Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -226,15 +252,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PitStopCalculator"
-        "ProductCode" = "8:{172E5577-E770-4A98-ACF1-4AF516A62703}"
-        "PackageCode" = "8:{2C0EAA65-6FEE-4B30-81D6-4B47E10CDB76}"
+        "ProductCode" = "8:{CF19DC88-5F29-4C1B-8A78-0478EEB21929}"
+        "PackageCode" = "8:{EF692600-8F3C-42F9-A381-896F94DDD5EC}"
         "UpgradeCode" = "8:{F3C71198-F00D-4B3A-867D-F68CBA8DD12A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.0.8"
+        "ProductVersion" = "8:0.0.11"
         "Manufacturer" = "8:Shentar n Squid"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -347,6 +373,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FA2D9FB1E297469D9076BD051265DB97"
+            {
+            "Name" = "8:PitStop Calculator"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_71C7D5FB4BAB48969A90DFBC59CD12B5"
+            "Folder" = "8:_E6436113B4234B8FAD31A4A8ABA83F24"
+            "WorkingFolder" = "8:_C08F3ACA94B94FAFA5F9FC75F737A0F8"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -746,7 +786,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_EB3B113C4C904320B7EDCBBA6D7C39B7"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_71C7D5FB4BAB48969A90DFBC59CD12B5"
             {
             "SourcePath" = "8:..\\..\\ACCPitstopCalcGUI\\obj\\Debug\\net5.0-windows\\apphost.exe"
             "TargetName" = "8:"

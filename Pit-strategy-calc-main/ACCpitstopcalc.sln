@@ -12,6 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D9761B50-2F1E-4FF1-AF13-2BD04C190C24}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		Patch Notes.txt = Patch Notes.txt
+		settings.xml = settings.xml
 		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject

@@ -1,0 +1,17 @@
+0.0.8:
+	Added Configuration window under Config -> Telemetry Settings
+		There you will find options for enabling or dissabling the following:
+			Automatic Telemetry Gathering
+			Automatic Resetting of Laps
+				Automatic Resetting of fuel calculations
+		(none of these options are permanent yet, they have to be reset each time you launch the program)
+	Added Correction to the estimated laps value used in fuel calculation to prevent skew as you travel through the lap
+		This means that the app should calculate using the time when you crossed the timing line
+0.0.9:
+	Added Settings Persistence
+		Written to settings.xml
+		Program will load defaults on first launch, then load them from settings.xml.
+			Be careful editing because you can break reading the settings from the file by corrupting the xml structure
+	Some refinements to the light/dark mode have been made
+		some further refinements to the light mode have yet to be made
+
