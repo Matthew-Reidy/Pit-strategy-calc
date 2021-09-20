@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.IO.MemoryMappedFiles;
-using System.ComponentModel;
 using System.Drawing;
+using System.Xml.Serialization;
+using System.Xml;
+using System.IO;
 
 namespace ACCPitstopCalcGUI
 {
@@ -17,6 +18,7 @@ namespace ACCPitstopCalcGUI
         ColorScheme colorScheme;
         sortLapTimes sorter;
         Control.ControlCollection controls;
+        DataGridViewCellStyle cellStyle;
         private class sortLapTimes : System.Collections.IComparer
         {
             private int sortModifier = -1;
@@ -84,7 +86,7 @@ namespace ACCPitstopCalcGUI
             }
             else
             {
-                label1.Text = "error";
+                
             }
         }
         private void tbTimeRemaining_KeyPress(object sender, KeyPressEventArgs e)
@@ -159,6 +161,8 @@ namespace ACCPitstopCalcGUI
 
         private void FrmGUI_FormClosing(object sender, FormClosingEventArgs e)
         {
+            CreateSettingsFile();
+            writeSettingsFile();
             Program.client.Shutdown();
             Program.client.Dispose();
             Application.Exit();
@@ -188,13 +192,7 @@ namespace ACCPitstopCalcGUI
         }
         private void c_GameStatusChanged(object sender, EventArgs e)
         {
-            Program.memoryConnected = Program.sharedMemory.IsRunning;
-            if (label1.InvokeRequired) 
-            { 
-                label1.Invoke((MethodInvoker)delegate () {
-                    label1.Text = Program.memoryConnected.ToString(); 
-                });
-            }
+            
         }
         private void c_staticInfoChanged(object sender, EventArgs e)
         {
@@ -209,29 +207,103 @@ namespace ACCPitstopCalcGUI
         }
         private void c_graphicsInfoChanged(object sender, EventArgs e)
         {
-            AssettoCorsaSharedMemory.Graphics newGraphics = Program.sharedMemory.ReadGraphics();
-            if (Program.graphics.CompletedLaps != int.MaxValue)
+            if (Program.settings.automaticResetLaps)
             {
-                if(Program.graphics.iLastTime != int.MaxValue)
+                if (Program.graphics.Session != ((AssettoCorsaSharedMemory.AssettoCorsa)sender).ReadGraphics().Session)
                 {
-                    if(newGraphics.CompletedLaps != Program.graphics.CompletedLaps)
+                    if (dgvLapTimes.InvokeRequired)
                     {
-                        bool lapExists = false;
-                        DataGridViewRowCollection rows = dgvLapTimes.Rows;
-                        if(dgvLapTimes.RowCount != 0) 
+                        dgvLapTimes.Invoke((MethodInvoker)delegate () { dgvLapTimes.Rows.Clear(); });
+                        if (Program.settings.automaticResetCalculation)
                         {
-                            foreach (DataGridViewRow r in rows)
+                            lblFuelToAddOutput.Invoke((MethodInvoker)delegate () { lblFuelToAdd.Text = "--"; });
+                            lblRefuelTo.Invoke((MethodInvoker)delegate () { lblRefuelTo.Text = "--"; });
+                            lblProjectedLapsOutput.Invoke((MethodInvoker)delegate () { lblProjectedLapsOutput.Text = "0"; });
+                            nudFuelPerLap.Invoke((MethodInvoker)delegate () { nudFuelPerLap.Value = 0; });
+                            nudFuelTankSize.Invoke((MethodInvoker)delegate () { nudFuelTankSize.Value = 0; });
+                            nudTimeRemainingHours.Invoke((MethodInvoker)delegate () { nudTimeRemainingHours.Value = 0; });
+                            nudTimeRemainingMinutes.Invoke((MethodInvoker)delegate () { nudTimeRemainingMinutes.Value = 0; });
+                            nudTimeRemainingSeconds.Invoke((MethodInvoker)delegate () { nudTimeRemainingSeconds.Value = 0; });
+                        }
+                    }
+                    else
+                    {
+                        dgvLapTimes.Rows.Clear();
+                        if (Program.settings.automaticResetCalculation)
+                        {
+                            lblFuelToAddOutput.Text = "--";
+                            lblRefuelTo.Text = "--";
+                            lblProjectedLapsOutput.Text = "0";
+                            nudFuelPerLap.Value = 0;
+                            nudFuelTankSize.Value = 0;
+                            nudTimeRemainingHours.Value = 0;
+                            nudTimeRemainingMinutes.Value = 0;
+                            nudTimeRemainingSeconds.Value = 0;
+                        }
+                    }
+                }
+            }
+            AssettoCorsaSharedMemory.Graphics newGraphics = Program.sharedMemory.ReadGraphics();
+            if (Program.settings.automaticTelemetryEnabled)
+            {
+                if (Program.graphics.CompletedLaps != int.MaxValue)
+                {
+                    if (Program.graphics.iLastTime != int.MaxValue)
+                    {
+                        if (newGraphics.CompletedLaps != Program.graphics.CompletedLaps)
+                        {
+                            bool lapExists = false;
+                            DataGridViewRowCollection rows = dgvLapTimes.Rows;
+                            if (dgvLapTimes.RowCount != 0)
                             {
-                                if ((int)r.Cells[0].Value == newGraphics.CompletedLaps)
+                                foreach (DataGridViewRow r in rows)
                                 {
-                                    lapExists = true;
+                                    if ((int)r.Cells[0].Value == newGraphics.CompletedLaps)
+                                    {
+                                        lapExists = true;
+                                    }
+                                    else
+                                    {
+                                        lapExists = false;
+                                    }
                                 }
-                                else
+                                if (!lapExists)
                                 {
-                                    lapExists = false;
+                                    int rowAdded = 0;
+                                    if (dgvLapTimes.InvokeRequired)
+                                    {
+                                        dgvLapTimes.Invoke((MethodInvoker)delegate () { rowAdded = dgvLapTimes.Rows.Add(); });
+                                    }
+                                    else
+                                    {
+                                        dgvLapTimes.Rows.Add();
+                                    }
+                                    DataGridViewRow newRow = dgvLapTimes.Rows[rowAdded];
+                                    decimal lapTimeS = (decimal)newGraphics.iLastTime / 1000;
+                                    if (dgvLapTimes.InvokeRequired)
+                                    {
+                                        BeginInvoke((MethodInvoker)delegate ()
+                                        {
+                                            newRow.Cells[2].Value = lapTimeS % 60;
+                                        });
+                                        BeginInvoke((MethodInvoker)delegate ()
+                                        {
+                                            newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
+                                        });
+                                        BeginInvoke((MethodInvoker)delegate ()
+                                        {
+                                            newRow.Cells[0].Value = newGraphics.CompletedLaps;
+                                        });
+                                    }
+                                    else
+                                    {
+                                        newRow.Cells[2].Value = lapTimeS % 60;
+                                        newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
+                                        newRow.Cells[0].Value = newGraphics.CompletedLaps;
+                                    }
                                 }
                             }
-                            if (!lapExists)
+                            else
                             {
                                 int rowAdded = 0;
                                 if (dgvLapTimes.InvokeRequired)
@@ -265,80 +337,45 @@ namespace ACCPitstopCalcGUI
                                     newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
                                     newRow.Cells[0].Value = newGraphics.CompletedLaps;
                                 }
-                            }
-                        }
-                        else
-                        {
-                            int rowAdded = 0;
-                            if (dgvLapTimes.InvokeRequired)
-                            {
-                                dgvLapTimes.Invoke((MethodInvoker)delegate () { rowAdded = dgvLapTimes.Rows.Add(); });
-                            }
-                            else
-                            {
-                                dgvLapTimes.Rows.Add();
-                            }
-                            DataGridViewRow newRow = dgvLapTimes.Rows[rowAdded];
-                            decimal lapTimeS = (decimal)newGraphics.iLastTime / 1000;
-                            if (dgvLapTimes.InvokeRequired)
-                            {
-                                BeginInvoke((MethodInvoker)delegate ()
+                                if (dgvLapTimes.InvokeRequired)
                                 {
-                                    newRow.Cells[2].Value = lapTimeS % 60;
-                                });
-                                BeginInvoke((MethodInvoker)delegate ()
-                                {
-                                    newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
-                                });
-                                BeginInvoke((MethodInvoker)delegate ()
-                                {
-                                    newRow.Cells[0].Value = newGraphics.CompletedLaps;
-                                });
-                            }
-                            else
-                            {
-                                newRow.Cells[2].Value = lapTimeS % 60;
-                                newRow.Cells[1].Value = Math.Floor(lapTimeS / 60);
-                                newRow.Cells[0].Value = newGraphics.CompletedLaps;
-                            }
-                            if (dgvLapTimes.InvokeRequired)
-                            {
-                                dgvLapTimes.Invoke((MethodInvoker)delegate () { dgvLapTimes.Sort(sorter = new()); });
+                                    dgvLapTimes.Invoke((MethodInvoker)delegate () { dgvLapTimes.Sort(sorter = new()); });
+                                }
                             }
                         }
                     }
                 }
-            }
-            decimal time = (decimal)newGraphics.SessionTimeLeft;
-            decimal timeRemainingHours = (decimal)Math.Floor(time / (1000 * 60 * 60));
-            time -= timeRemainingHours * 1000 * 60 * 60;
-            decimal timeRemainingMinutes = (decimal)Math.Floor(time / (1000 *60));
-            time -= timeRemainingMinutes * 1000 * 60;
-            decimal timeRemainingSeconds = time/1000;
-            
-            if (newGraphics.SessionTimeLeft != -1) 
-            {
-                if (nudTimeRemainingHours.InvokeRequired)
-                {
-                    nudTimeRemainingHours.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingHours.Value = timeRemainingHours; });
-                    nudTimeRemainingMinutes.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingMinutes.Value = timeRemainingMinutes; });
-                    nudTimeRemainingSeconds.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingSeconds.Value = timeRemainingSeconds; });
+                decimal time = (decimal)newGraphics.SessionTimeLeft;
+                decimal timeRemainingHours = (decimal)Math.Floor(time / (1000 * 60 * 60));
+                time -= timeRemainingHours * 1000 * 60 * 60;
+                decimal timeRemainingMinutes = (decimal)Math.Floor(time / (1000 * 60));
+                time -= timeRemainingMinutes * 1000 * 60;
+                decimal timeRemainingSeconds = time / 1000;
 
-                }
-                else
+                if (newGraphics.SessionTimeLeft != -1)
                 {
+                    if (nudTimeRemainingHours.InvokeRequired)
+                    {
+                        nudTimeRemainingHours.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingHours.Value = timeRemainingHours; });
+                        nudTimeRemainingMinutes.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingMinutes.Value = timeRemainingMinutes; });
+                        nudTimeRemainingSeconds.BeginInvoke((MethodInvoker)delegate () { nudTimeRemainingSeconds.Value = timeRemainingSeconds; });
 
-                    nudTimeRemainingHours.Value = timeRemainingHours;
-                    nudTimeRemainingMinutes.Value = timeRemainingMinutes;
-                    nudTimeRemainingSeconds.Value = timeRemainingSeconds;
-                }
-                if (nudFuelPerLap.InvokeRequired)
-                {
-                    nudFuelPerLap.Invoke((MethodInvoker)delegate () { nudFuelPerLap.Value = (decimal)newGraphics.FuelXLap; });
-                }
-                else
-                {
-                    nudFuelPerLap.Value = (decimal)newGraphics.FuelXLap;
+                    }
+                    else
+                    {
+
+                        nudTimeRemainingHours.Value = timeRemainingHours;
+                        nudTimeRemainingMinutes.Value = timeRemainingMinutes;
+                        nudTimeRemainingSeconds.Value = timeRemainingSeconds;
+                    }
+                    if (nudFuelPerLap.InvokeRequired)
+                    {
+                        nudFuelPerLap.Invoke((MethodInvoker)delegate () { nudFuelPerLap.Value = (decimal)newGraphics.FuelXLap; });
+                    }
+                    else
+                    {
+                        nudFuelPerLap.Value = (decimal)newGraphics.FuelXLap;
+                    }
                 }
             }
             Program.graphics = newGraphics;
@@ -358,9 +395,14 @@ namespace ACCPitstopCalcGUI
             Program.sharedMemory.StaticInfoUpdated += c_staticInfoChanged;
             Program.client = new("127.0.0.1", 9000, "Your Name", "asd", "", 250);
             Program.client.MessageHandler.OnConnectionStateChanged += c_ConnectionStateChanged;
+            cellStyle = new();
+            cellStyle.BackColor = SystemColors.WindowFrame;
+            cellStyle.ForeColor = SystemColors.Window;
+            dgvLapTimes.DefaultCellStyle = cellStyle;
+
         }
 
-        private void tsmiOpenOverlay_Click(object sender, EventArgs e)
+        private void onOverlay_Click(object sender, EventArgs e)
         {
 
         }
@@ -382,6 +424,10 @@ namespace ACCPitstopCalcGUI
             tsmiFile.ForeColor = SystemColors.WindowText;
             tsiConfig.ForeColor = SystemColors.WindowText;
             tsmiAbout.ForeColor = SystemColors.WindowText;
+            cellStyle = new();
+            cellStyle.BackColor = SystemColors.Window;
+            cellStyle.ForeColor = SystemColors.WindowText;
+            dgvLapTimes.DefaultCellStyle = cellStyle;
             colorScheme = ColorScheme.light;
         }
 
@@ -429,8 +475,11 @@ namespace ACCPitstopCalcGUI
             controls = this.Controls;
             foreach (Control c in controls)
             {
-                c.ForeColor = SystemColors.ControlLightLight;
-                c.BackColor = SystemColors.WindowFrame;
+                if (c.GetType() != dgvLapTimes.GetType())
+                {
+                    c.ForeColor = SystemColors.ControlLightLight;
+                    c.BackColor = SystemColors.WindowFrame;
+                }
             }
             menuStrip1.BackColor = SystemColors.WindowText;
             tsmiFile.ForeColor = SystemColors.Window;
@@ -438,8 +487,55 @@ namespace ACCPitstopCalcGUI
             tsmiAbout.ForeColor = SystemColors.Window;
             tsmiFile.BackColor = SystemColors.WindowText;
             tsiConfig.BackColor = SystemColors.WindowText;
-            tsmiAbout.BackColor = SystemColors.WindowText;
+            tsmiAbout.BackColor = SystemColors.WindowText; 
+            cellStyle = new();
+            cellStyle.ForeColor = SystemColors.Window;
+            cellStyle.BackColor = SystemColors.WindowFrame;
+            dgvLapTimes.DefaultCellStyle = cellStyle;
             colorScheme = ColorScheme.dark;
+        }
+        private void tsmiOpenOverlay_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void tsmiConfigTelemetry_Click(object sender, EventArgs e)
+        {
+            Config configForm = new Config();
+            configForm.Show(this);
+        }
+        private void CreateSettingsFile()
+        {
+            System.IO.Directory.CreateDirectory(Program.settingsFolder);
+            if (!File.Exists(Program.settingsFolder + "\\settings.xml"))
+            {
+                var tskResult = File.Create(Program.settingsFolder + "\\settings.xml");
+                tskResult.Close();
+            }
+        }
+        private void writeSettingsFile()
+        {
+
+            XmlSerializer serializer = new(typeof(Program.Settings));
+            TextWriter writer;
+            writer = new StreamWriter(Program.settingsFolder + "\\settings.xml");
+            serializer.Serialize(writer, Program.settings);
+            writer.Close();
+        }
+        private void FrmGUI_Load(object sender, EventArgs e)
+        {
+            if (File.Exists(Program.settingsFolder + "\\settings.xml"))
+            {
+                TextReader reader = new StreamReader(Program.settingsFolder + "\\settings.xml");
+                XmlSerializer serializer = new XmlSerializer(typeof(Program.Settings));
+                Program.settings = (Program.Settings)serializer.Deserialize(reader);
+                reader.Close(); 
+            }
+            else
+            {
+                Program.settings.automaticTelemetryEnabled = true;
+                Program.settings.automaticResetLaps = false;
+                Program.settings.automaticResetCalculation = false;
+            }
         }
     }
 }
