@@ -10,7 +10,7 @@ namespace FuelCalculatorDLL
 		static double EstFuelCons; //Estimated fuel fonsumption
 		static double TTF; //Time til race finish
 		static int FIC; //Current fuel in car
-		static System.Collections.Generic.List<string> LaptimesString = new System.Collections.Generic.List<string>();
+		static List<string> LaptimesString = new List<string>();
 		static List<int> LapTimesNumber = new List<int>();
 
 		public int FinalCalculation(double estFuelCons, int estimatedLaps)
