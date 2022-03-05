@@ -7,27 +7,27 @@ namespace FuelCalculatorDLL
 {
     public static class FuelCalc
     {
-		static decimal EstFuelCons; //Estimated fuel fonsumption
-		static decimal TTF; //Time til race finish
+		static double EstFuelCons; //Estimated fuel fonsumption
+		static double TTF; //Time til race finish
 		static int FIC; //Current fuel in car
 		static System.Collections.Generic.List<string> LaptimesString = new System.Collections.Generic.List<string>();
 		static List<int> LapTimesNumber = new List<int>();
 
-		public static int FinalCalculation(decimal estFuelCons, int estimatedLaps)
+		public int FinalCalculation(double estFuelCons, int estimatedLaps)
 		{
-			return (int)Math.Round(estFuelCons * estimatedLaps,0);
+			return (int)Math.Round(estFuelCons * estimatedLaps,0); //can also use math.floor or ceil to avoid type casting
 		}
-		public static decimal LapToSeconds(decimal minutes, decimal seconds)
+		public double LapToSeconds(double minutes, double seconds)
 		{
             minutes *= 60;
-            decimal result = minutes + seconds;
+            double result = minutes + seconds;
 			return result;
         }
-		public static decimal AvgCalc(List<decimal> lapTimes)
+		public double AvgCalc(List<double> lapTimes)
 		{
 			decimal sumOfAll = 0;
 			decimal average = 0;
-			foreach(decimal lapTime in lapTimes)
+			foreach(double lapTime in lapTimes)
             {
 				sumOfAll += lapTime;
             }
@@ -36,22 +36,22 @@ namespace FuelCalculatorDLL
 			return average;
 		}
 
-		public static int ProjectedLaps(decimal timeRemaining, decimal averageLapTime)
+		public int ProjectedLaps(double timeRemaining, double averageLapTime)
 		{
 			int numLaps = 0;
-			numLaps = (int)Math.Round(timeRemaining /averageLapTime,0);
+			numLaps = (int)Math.Round(timeRemaining /averageLapTime,0); //can also use math.floor or ceil to avoid type casting
 			return numLaps;
 		}
 
-		public static int FuelForStint(int numLaps)
+		public int FuelForStint(int numLaps)
 		{
 			int LitersReq = 0;
-			LitersReq = numLaps * (int)Math.Round(EstFuelCons, 0);
+			LitersReq = numLaps * (int)Math.Round(EstFuelCons, 0); //can also use math.floor or ceil to avoid type casting
 			return LitersReq;
 		}
 
 
-		public static void nums(decimal EstFuelCons, decimal TTF, int FIC)
+		public static void nums(double EstFuelCons, double TTF, int FIC)
 		{
 			FuelCalc.EstFuelCons = EstFuelCons;
 			FuelCalc.TTF = TTF;
