@@ -1,0 +1,12 @@
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\assettocorsasharedmemory-master\bin\Release\AssettoCorsaSharedMemory.dll
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\assettocorsasharedmemory-master\bin\Release\AssettoCorsaSharedMemory.pdb
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\assettocorsasharedmemory-master\obj\Release\AssettoCorsaSharedMemory.csproj.AssemblyReference.cache
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\assettocorsasharedmemory-master\obj\Release\AssettoCorsaSharedMemory.csproj.CoreCompileInputs.cache
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\assettocorsasharedmemory-master\obj\Release\AssettoCorsaSharedMemory.dll
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\assettocorsasharedmemory-master\obj\Release\AssettoCorsaSharedMemory.pdb
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\assettocorsasharedmemory-master\bin\Release\AssettoCorsaSharedMemory.dll
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\assettocorsasharedmemory-master\bin\Release\AssettoCorsaSharedMemory.pdb
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\assettocorsasharedmemory-master\obj\Release\AssettoCorsaSharedMemory.csproj.AssemblyReference.cache
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\assettocorsasharedmemory-master\obj\Release\AssettoCorsaSharedMemory.csproj.CoreCompileInputs.cache
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\assettocorsasharedmemory-master\obj\Release\AssettoCorsaSharedMemory.dll
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\assettocorsasharedmemory-master\obj\Release\AssettoCorsaSharedMemory.pdb

@@ -3,3 +3,15 @@ C:\Users\sucke\Documents\Pit-strategy-calc-main\FuelCalculatorDLL\bin\Debug\Fuel
 C:\Users\sucke\Documents\Pit-strategy-calc-main\FuelCalculatorDLL\obj\Debug\FuelCalculation.csproj.CoreCompileInputs.cache
 C:\Users\sucke\Documents\Pit-strategy-calc-main\FuelCalculatorDLL\obj\Debug\FuelCalculatorDLL.dll
 C:\Users\sucke\Documents\Pit-strategy-calc-main\FuelCalculatorDLL\obj\Debug\FuelCalculatorDLL.pdb
+C:\Users\sucke\source\repos\Pit-strategy-calc\FuelCalculatorDLL\obj\Debug\FuelCalculation.csproj.AssemblyReference.cache
+C:\Users\sucke\source\repos\Pit-strategy-calc\FuelCalculatorDLL\obj\Debug\FuelCalculation.csproj.CoreCompileInputs.cache
+C:\Users\sucke\source\repos\Pit-strategy-calc\FuelCalculatorDLL\obj\Debug\FuelCalculatorDLL.dll
+C:\Users\sucke\source\repos\Pit-strategy-calc\FuelCalculatorDLL\obj\Debug\FuelCalculatorDLL.pdb
+C:\Users\sucke\source\repos\Pit-strategy-calc\FuelCalculatorDLL\bin\Debug\FuelCalculatorDLL.dll
+C:\Users\sucke\source\repos\Pit-strategy-calc\FuelCalculatorDLL\bin\Debug\FuelCalculatorDLL.pdb
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\FuelCalculatorDLL\bin\Debug\FuelCalculatorDLL.dll
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\FuelCalculatorDLL\bin\Debug\FuelCalculatorDLL.pdb
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\FuelCalculatorDLL\obj\Debug\FuelCalculation.csproj.AssemblyReference.cache
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\FuelCalculatorDLL\obj\Debug\FuelCalculation.csproj.CoreCompileInputs.cache
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\FuelCalculatorDLL\obj\Debug\FuelCalculatorDLL.dll
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\FuelCalculatorDLL\obj\Debug\FuelCalculatorDLL.pdb

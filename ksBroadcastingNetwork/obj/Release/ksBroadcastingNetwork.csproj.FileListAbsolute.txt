@@ -1,0 +1,6 @@
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\ksBroadcastingNetwork\bin\Release\ksBroadcastingNetwork.dll
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\ksBroadcastingNetwork\bin\Release\ksBroadcastingNetwork.pdb
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Release\ksBroadcastingNetwork.csproj.AssemblyReference.cache
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Release\ksBroadcastingNetwork.csproj.CoreCompileInputs.cache
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Release\ksBroadcastingNetwork.dll
+C:\Users\sucke\Source\Repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Release\ksBroadcastingNetwork.pdb

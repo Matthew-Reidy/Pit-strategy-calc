@@ -1,0 +1,12 @@
+C:\Users\sucke\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\bin\Debug\ksBroadcastingNetwork.dll
+C:\Users\sucke\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\bin\Debug\ksBroadcastingNetwork.pdb
+C:\Users\sucke\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.csproj.AssemblyReference.cache
+C:\Users\sucke\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.csproj.CoreCompileInputs.cache
+C:\Users\sucke\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.dll
+C:\Users\sucke\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.pdb
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\bin\Debug\ksBroadcastingNetwork.dll
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\bin\Debug\ksBroadcastingNetwork.pdb
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.csproj.AssemblyReference.cache
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.csproj.CoreCompileInputs.cache
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.dll
+C:\Users\sucke\Documents\source\repos\Pit-strategy-calc\ksBroadcastingNetwork\obj\Debug\ksBroadcastingNetwork.pdb
