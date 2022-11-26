@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "UPXhgDHmr3AsXqUW3hbJPyi8uJta0UmVB0TYbZL73rhHOHRHWGJJ5inT8rgFJ3xII/BfJcYLh3CtKmoyxdsmsg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\ACCPitstopCalcGUI\\ACCPitstopCalcGUI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sucke\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.22621.27\\microsoft.windows.sdk.net.ref.10.0.22621.27.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,47 +1,44 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\ACCPitstopCalcGUI\\ACCPitstopCalcGUI.csproj": {}
+    "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\ACCPitstopCalcGUI\\ACCPitstopCalcGUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\ACCPitstopCalcGUI\\ACCPitstopCalcGUI.csproj": {
+    "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\ACCPitstopCalcGUI\\ACCPitstopCalcGUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\ACCPitstopCalcGUI\\ACCPitstopCalcGUI.csproj",
+        "projectUniqueName": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\ACCPitstopCalcGUI\\ACCPitstopCalcGUI.csproj",
         "projectName": "ACCPitstopCalcGUI",
-        "projectPath": "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\ACCPitstopCalcGUI\\ACCPitstopCalcGUI.csproj",
+        "projectPath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\ACCPitstopCalcGUI\\ACCPitstopCalcGUI.csproj",
         "packagesPath": "C:\\Users\\sucke\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\ACCPitstopCalcGUI\\obj\\",
+        "outputPath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\ACCPitstopCalcGUI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\sucke\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0-windows7.0"
+          "net7.0-windows10.0.22621.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0-windows7.0": {
-            "targetAlias": "net5.0-windows",
+          "net7.0-windows10.0.22621": {
+            "targetAlias": "net7.0-windows10.0.22621.0",
             "projectReferences": {
-              "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\FuelCalculatorDLL\\FuelCalculation.csproj": {
-                "projectPath": "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\FuelCalculatorDLL\\FuelCalculation.csproj"
+              "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\assettocorsasharedmemory-master\\AssettoCorsaSharedMemory.csproj": {
+                "projectPath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\assettocorsasharedmemory-master\\AssettoCorsaSharedMemory.csproj"
               },
-              "C:\\Users\\sucke\\Downloads\\ACCSharedMemory-master\\ACCSharedMemory-master\\AssettoCorsaSharedMemory.csproj": {
-                "projectPath": "C:\\Users\\sucke\\Downloads\\ACCSharedMemory-master\\ACCSharedMemory-master\\AssettoCorsaSharedMemory.csproj"
+              "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\FuelCalculatorDLL\\FuelCalculation.csproj": {
+                "projectPath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\FuelCalculatorDLL\\FuelCalculation.csproj"
               },
-              "G:\\Daniel\\Steam\\steamapps\\common\\Assetto Corsa Competizione Dedicated Server\\sdk\\broadcasting\\Sources\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj": {
-                "projectPath": "G:\\Daniel\\Steam\\steamapps\\common\\Assetto Corsa Competizione Dedicated Server\\sdk\\broadcasting\\Sources\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj"
+              "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj": {
+                "projectPath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj"
+              },
+              "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\Pit-strategy-calc-main\\Overlays\\Overlays.csproj": {
+                "projectPath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\Pit-strategy-calc-main\\Overlays\\Overlays.csproj"
               }
             }
           }
@@ -53,15 +50,128 @@
         }
       },
       "frameworks": {
-        "net5.0-windows7.0": {
-          "targetAlias": "net5.0-windows",
+        "net7.0-windows10.0.22621": {
+          "targetAlias": "net7.0-windows10.0.22621.0",
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.Windows.SDK.NET.Ref",
+              "version": "[10.0.22621.27, 10.0.22621.27]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.Windows.SDK.NET.Ref": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\assettocorsasharedmemory-master\\AssettoCorsaSharedMemory.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\assettocorsasharedmemory-master\\AssettoCorsaSharedMemory.csproj",
+        "projectName": "AssettoCorsaSharedMemory",
+        "projectPath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\assettocorsasharedmemory-master\\AssettoCorsaSharedMemory.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\FuelCalculatorDLL\\FuelCalculation.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\FuelCalculatorDLL\\FuelCalculation.csproj",
+        "projectName": "FuelCalculation",
+        "projectPath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\FuelCalculatorDLL\\FuelCalculation.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj",
+        "projectName": "ksBroadcastingNetwork",
+        "projectPath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj",
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {}
+      }
+    },
+    "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\Pit-strategy-calc-main\\Overlays\\Overlays.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\Pit-strategy-calc-main\\Overlays\\Overlays.csproj",
+        "projectName": "Overlays",
+        "projectPath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\Pit-strategy-calc-main\\Overlays\\Overlays.csproj",
+        "packagesPath": "C:\\Users\\sucke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sucke\\Documents\\source\\repos\\Pit-strategy-calc\\Pit-strategy-calc-main\\Overlays\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sucke\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0-windows7.0": {
+            "targetAlias": "net7.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0-windows7.0": {
+          "targetAlias": "net7.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -69,42 +179,12 @@
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             },
-            "Microsoft.WindowsDesktop.App.WindowsForms": {
+            "Microsoft.WindowsDesktop.App.WPF": {
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
-      }
-    },
-    "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\FuelCalculatorDLL\\FuelCalculation.csproj": {
-      "restore": {
-        "projectUniqueName": "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\FuelCalculatorDLL\\FuelCalculation.csproj",
-        "projectName": "FuelCalculation",
-        "projectPath": "C:\\Users\\sucke\\Documents\\Pit-strategy-calc-main\\FuelCalculatorDLL\\FuelCalculation.csproj"
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
-    "C:\\Users\\sucke\\Downloads\\ACCSharedMemory-master\\ACCSharedMemory-master\\AssettoCorsaSharedMemory.csproj": {
-      "restore": {
-        "projectUniqueName": "C:\\Users\\sucke\\Downloads\\ACCSharedMemory-master\\ACCSharedMemory-master\\AssettoCorsaSharedMemory.csproj",
-        "projectName": "AssettoCorsaSharedMemory",
-        "projectPath": "C:\\Users\\sucke\\Downloads\\ACCSharedMemory-master\\ACCSharedMemory-master\\AssettoCorsaSharedMemory.csproj"
-      },
-      "frameworks": {
-        "net48": {}
-      }
-    },
-    "G:\\Daniel\\Steam\\steamapps\\common\\Assetto Corsa Competizione Dedicated Server\\sdk\\broadcasting\\Sources\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj": {
-      "restore": {
-        "projectUniqueName": "G:\\Daniel\\Steam\\steamapps\\common\\Assetto Corsa Competizione Dedicated Server\\sdk\\broadcasting\\Sources\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj",
-        "projectName": "ksBroadcastingNetwork",
-        "projectPath": "G:\\Daniel\\Steam\\steamapps\\common\\Assetto Corsa Competizione Dedicated Server\\sdk\\broadcasting\\Sources\\ksBroadcastingNetwork\\ksBroadcastingNetwork.csproj"
-      },
-      "frameworks": {
-        "net461": {}
       }
     }
   }

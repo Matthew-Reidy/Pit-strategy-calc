@@ -2,9 +2,11 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows10.0.22621.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <StartupObject>ACCPitstopCalcGUI.Program</StartupObject>
+    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+    <UseWPF>True</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,9 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Downloads\ACCSharedMemory-master\ACCSharedMemory-master\AssettoCorsaSharedMemory.csproj" />
+    <ProjectReference Include="..\assettocorsasharedmemory-master\AssettoCorsaSharedMemory.csproj" />
     <ProjectReference Include="..\FuelCalculatorDLL\FuelCalculation.csproj" />
-    <ProjectReference Include="G:\Daniel\Steam\steamapps\common\Assetto Corsa Competizione Dedicated Server\sdk\broadcasting\Sources\ksBroadcastingNetwork\ksBroadcastingNetwork.csproj" />
+    <ProjectReference Include="..\ksBroadcastingNetwork\ksBroadcastingNetwork.csproj" />
+    <ProjectReference Include="..\Pit-strategy-calc-main\Overlays\Overlays.csproj" />
   </ItemGroup>
 
   <ItemGroup>

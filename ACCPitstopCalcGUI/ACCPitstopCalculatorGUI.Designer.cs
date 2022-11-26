@@ -40,7 +40,10 @@ namespace ACCPitstopCalcGUI
             this.styleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiConfigTelemetry = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.defaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.lblFuelPerLap = new System.Windows.Forms.Label();
             this.lblTimeRemaining = new System.Windows.Forms.Label();
@@ -65,15 +68,17 @@ namespace ACCPitstopCalcGUI
             this.lblLapTimeSeconds = new System.Windows.Forms.Label();
             this.nudLapTimeSeconds = new System.Windows.Forms.NumericUpDown();
             this.dgvLapTimes = new System.Windows.Forms.DataGridView();
-            this.Lap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Minutes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Seconds = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTimeRemainingHours = new System.Windows.Forms.Label();
             this.lblTimeRemainingMinutes = new System.Windows.Forms.Label();
             this.lblTimeRemainingSeconds = new System.Windows.Forms.Label();
             this.nudTimeRemainingHours = new System.Windows.Forms.NumericUpDown();
             this.nudTimeRemainingMinutes = new System.Windows.Forms.NumericUpDown();
             this.nudTimeRemainingSeconds = new System.Windows.Forms.NumericUpDown();
+            this.lblTrackLength = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkClickThrough = new System.Windows.Forms.CheckBox();
+            this.hscOverlayTransparency = new System.Windows.Forms.HScrollBar();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudFuelPerLap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFuelTankSize)).BeginInit();
@@ -108,8 +113,6 @@ namespace ACCPitstopCalcGUI
             this.tsmiFile.Name = "tsmiFile";
             this.tsmiFile.Size = new System.Drawing.Size(37, 20);
             this.tsmiFile.Text = "File";
-            this.tsmiFile.DropDownClosed += new System.EventHandler(this.tsmiFile_DropDownClosed);
-            this.tsmiFile.DropDownOpened += new System.EventHandler(this.tsmiFile_DropDownOpened);
             // 
             // openToolStripMenuItem
             // 
@@ -142,13 +145,12 @@ namespace ACCPitstopCalcGUI
             // 
             this.tsiConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.styleToolStripMenuItem,
-            this.tsmiConfigTelemetry});
+            this.backgroundToolStripMenuItem,
+            this.saveToolStripMenuItem});
             this.tsiConfig.ForeColor = System.Drawing.SystemColors.Window;
             this.tsiConfig.Name = "tsiConfig";
             this.tsiConfig.Size = new System.Drawing.Size(55, 20);
             this.tsiConfig.Text = "Config";
-            this.tsiConfig.DropDownClosed += new System.EventHandler(this.tsmiFile_DropDownClosed);
-            this.tsiConfig.DropDownOpened += new System.EventHandler(this.tsmiFile_DropDownOpened);
             // 
             // styleToolStripMenuItem
             // 
@@ -156,7 +158,7 @@ namespace ACCPitstopCalcGUI
             this.lightToolStripMenuItem,
             this.darkToolStripMenuItem});
             this.styleToolStripMenuItem.Name = "styleToolStripMenuItem";
-            this.styleToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.styleToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.styleToolStripMenuItem.Text = "Style";
             // 
             // lightToolStripMenuItem
@@ -173,12 +175,33 @@ namespace ACCPitstopCalcGUI
             this.darkToolStripMenuItem.Text = "Dark";
             this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
             // 
-            // tsmiConfigTelemetry
+            // backgroundToolStripMenuItem
             // 
-            this.tsmiConfigTelemetry.Name = "tsmiConfigTelemetry";
-            this.tsmiConfigTelemetry.Size = new System.Drawing.Size(170, 22);
-            this.tsmiConfigTelemetry.Text = "Telemetry Settings";
-            this.tsmiConfigTelemetry.Click += new System.EventHandler(this.tsmiConfigTelemetry_Click);
+            this.backgroundToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.defaultToolStripMenuItem,
+            this.selectToolStripMenuItem});
+            this.backgroundToolStripMenuItem.Name = "backgroundToolStripMenuItem";
+            this.backgroundToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.backgroundToolStripMenuItem.Text = "Background";
+            // 
+            // defaultToolStripMenuItem
+            // 
+            this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
+            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.defaultToolStripMenuItem.Text = "Default";
+            // 
+            // selectToolStripMenuItem
+            // 
+            this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
+            this.selectToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.selectToolStripMenuItem.Text = "Select...";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // tsmiAbout
             // 
@@ -359,6 +382,12 @@ namespace ACCPitstopCalcGUI
             this.nudFuelPerLap.Size = new System.Drawing.Size(120, 23);
             this.nudFuelPerLap.TabIndex = 19;
             this.nudFuelPerLap.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudFuelPerLap.Value = new decimal(new int[] {
+            31,
+            0,
+            0,
+            65536});
+            this.nudFuelPerLap.ValueChanged += new System.EventHandler(this.btnCalculate_Click);
             // 
             // nudFuelTankSize
             // 
@@ -374,6 +403,11 @@ namespace ACCPitstopCalcGUI
             this.nudFuelTankSize.Size = new System.Drawing.Size(120, 23);
             this.nudFuelTankSize.TabIndex = 20;
             this.nudFuelTankSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudFuelTankSize.Value = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
             // 
             // btnClearAllLaps
             // 
@@ -422,6 +456,11 @@ namespace ACCPitstopCalcGUI
             this.nudLapTimeMinutes.Size = new System.Drawing.Size(120, 23);
             this.nudLapTimeMinutes.TabIndex = 27;
             this.nudLapTimeMinutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudLapTimeMinutes.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblLapTimeMinutes
             // 
@@ -463,6 +502,11 @@ namespace ACCPitstopCalcGUI
             this.nudLapTimeSeconds.Size = new System.Drawing.Size(120, 23);
             this.nudLapTimeSeconds.TabIndex = 29;
             this.nudLapTimeSeconds.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudLapTimeSeconds.Value = new decimal(new int[] {
+            45678,
+            0,
+            0,
+            196608});
             // 
             // dgvLapTimes
             // 
@@ -474,15 +518,11 @@ namespace ACCPitstopCalcGUI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvLapTimes.CausesValidation = false;
             this.dgvLapTimes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLapTimes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Lap,
-            this.Minutes,
-            this.Seconds});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvLapTimes.DefaultCellStyle = dataGridViewCellStyle1;
@@ -492,34 +532,13 @@ namespace ACCPitstopCalcGUI
             this.dgvLapTimes.ReadOnly = true;
             this.dgvLapTimes.RowHeadersVisible = false;
             this.dgvLapTimes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvLapTimes.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dgvLapTimes.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            this.dgvLapTimes.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             this.dgvLapTimes.RowTemplate.Height = 25;
             this.dgvLapTimes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvLapTimes.Size = new System.Drawing.Size(205, 362);
             this.dgvLapTimes.TabIndex = 31;
-            // 
-            // Lap
-            // 
-            this.Lap.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Lap.HeaderText = "Lap";
-            this.Lap.Name = "Lap";
-            this.Lap.ReadOnly = true;
-            this.Lap.Width = 51;
-            // 
-            // Minutes
-            // 
-            this.Minutes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Minutes.HeaderText = "Minutes";
-            this.Minutes.Name = "Minutes";
-            this.Minutes.ReadOnly = true;
-            this.Minutes.Width = 75;
-            // 
-            // Seconds
-            // 
-            this.Seconds.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Seconds.HeaderText = "Seconds";
-            this.Seconds.Name = "Seconds";
-            this.Seconds.ReadOnly = true;
-            this.Seconds.Width = 76;
             // 
             // lblTimeRemainingHours
             // 
@@ -568,6 +587,11 @@ namespace ACCPitstopCalcGUI
             this.nudTimeRemainingHours.Size = new System.Drawing.Size(71, 23);
             this.nudTimeRemainingHours.TabIndex = 35;
             this.nudTimeRemainingHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudTimeRemainingHours.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nudTimeRemainingMinutes
             // 
@@ -583,6 +607,11 @@ namespace ACCPitstopCalcGUI
             this.nudTimeRemainingMinutes.Size = new System.Drawing.Size(71, 23);
             this.nudTimeRemainingMinutes.TabIndex = 36;
             this.nudTimeRemainingMinutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudTimeRemainingMinutes.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // nudTimeRemainingSeconds
             // 
@@ -598,7 +627,59 @@ namespace ACCPitstopCalcGUI
             this.nudTimeRemainingSeconds.Size = new System.Drawing.Size(71, 23);
             this.nudTimeRemainingSeconds.TabIndex = 37;
             this.nudTimeRemainingSeconds.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudTimeRemainingSeconds.ValueChanged += new System.EventHandler(this.btnCalculate_Click);
+            // 
+            // lblTrackLength
+            // 
+            this.lblTrackLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTrackLength.AutoSize = true;
+            this.lblTrackLength.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblTrackLength.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblTrackLength.Location = new System.Drawing.Point(303, 178);
+            this.lblTrackLength.Name = "lblTrackLength";
+            this.lblTrackLength.Size = new System.Drawing.Size(74, 15);
+            this.lblTrackLength.TabIndex = 38;
+            this.lblTrackLength.Text = "Track Length";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(303, 197);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 15);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "label1";
+            // 
+            // chkClickThrough
+            // 
+            this.chkClickThrough.AutoSize = true;
+            this.chkClickThrough.Location = new System.Drawing.Point(303, 215);
+            this.chkClickThrough.Name = "chkClickThrough";
+            this.chkClickThrough.Size = new System.Drawing.Size(143, 19);
+            this.chkClickThrough.TabIndex = 40;
+            this.chkClickThrough.Text = "Click Through Overlay";
+            this.chkClickThrough.UseVisualStyleBackColor = true;
+            this.chkClickThrough.CheckedChanged += new System.EventHandler(this.chkClickThrough_CheckedChanged);
+            // 
+            // hscOverlayTransparency
+            // 
+            this.hscOverlayTransparency.Location = new System.Drawing.Point(303, 237);
+            this.hscOverlayTransparency.Maximum = 109;
+            this.hscOverlayTransparency.Name = "hscOverlayTransparency";
+            this.hscOverlayTransparency.Size = new System.Drawing.Size(165, 17);
+            this.hscOverlayTransparency.TabIndex = 41;
+            this.hscOverlayTransparency.ValueChanged += new System.EventHandler(this.hscOverlayTransparency_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(304, 260);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 15);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "label2";
             // 
             // FrmGUI
             // 
@@ -607,6 +688,11 @@ namespace ACCPitstopCalcGUI
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.ClientSize = new System.Drawing.Size(744, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.hscOverlayTransparency);
+            this.Controls.Add(this.chkClickThrough);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTrackLength);
             this.Controls.Add(this.nudTimeRemainingSeconds);
             this.Controls.Add(this.nudTimeRemainingMinutes);
             this.Controls.Add(this.nudTimeRemainingHours);
@@ -643,7 +729,7 @@ namespace ACCPitstopCalcGUI
             this.Name = "FrmGUI";
             this.Text = "Pitstop Calculator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmGUI_FormClosing);
-            this.Load += new System.EventHandler(this.FrmGUI_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmGUI_FormClosed);
             this.Shown += new System.EventHandler(this.FrmGUI_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -670,7 +756,9 @@ namespace ACCPitstopCalcGUI
         private System.Windows.Forms.ToolStripMenuItem styleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lightToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem darkToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tsmiConfigTelemetry;
+        private System.Windows.Forms.ToolStripMenuItem backgroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem defaultToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectToolStripMenuItem;
         private System.Windows.Forms.Label lblFuelPerLap;
         private System.Windows.Forms.Label lblTimeRemaining;
         private System.Windows.Forms.Label lblProjectedLaps;
@@ -694,18 +782,21 @@ namespace ACCPitstopCalcGUI
         private System.Windows.Forms.Label lblLapTimeSeconds;
         private System.Windows.Forms.NumericUpDown nudLapTimeSeconds;
         private System.Windows.Forms.DataGridView dgvLapTimes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lap;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Minutes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Seconds;
         private System.Windows.Forms.Label lblTimeRemainingHours;
         private System.Windows.Forms.Label lblTimeRemainingMinutes;
         private System.Windows.Forms.Label lblTimeRemainingSeconds;
         private System.Windows.Forms.NumericUpDown nudTimeRemainingHours;
         private System.Windows.Forms.NumericUpDown nudTimeRemainingMinutes;
         private System.Windows.Forms.NumericUpDown nudTimeRemainingSeconds;
+        private System.Windows.Forms.Label lblTrackLength;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenOverlay;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.CheckBox chkClickThrough;
+        private System.Windows.Forms.HScrollBar hscOverlayTransparency;
+        private System.Windows.Forms.Label label2;
     }
 }
 
